@@ -1,0 +1,3226 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    BREAK
+    COLON
+    DOUBLEMARK
+    EXPONENT
+    MARK
+    POINT
+    READ
+    RESERVED
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> PROGRAM OBRACKET statement_list CBRACKET
+Rule 2     program -> PROGRAM OBRACKET CBRACKET
+Rule 3     statement_list -> statement
+Rule 4     statement_list -> statement_list statement
+Rule 5     statement -> sent_assign
+Rule 6     statement -> write_statement
+Rule 7     statement -> var_declaration_statement
+Rule 8     statement -> if_statement
+Rule 9     statement -> iteration_statement
+Rule 10    do_while_statement -> DO OBRACKET statement_list CBRACKET UNTIL LPAREN sent_assign RPAREN
+Rule 11    for_statement -> FOR LPAREN sent_assign sent_assign RPAREN OBRACKET statement_list CBRACKET
+Rule 12    while_statement -> WHILE LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET
+Rule 13    iteration_statement -> for_statement
+Rule 14    iteration_statement -> while_statement
+Rule 15    iteration_statement -> do_while_statement
+Rule 16    if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET FI
+Rule 17    if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI
+Rule 18    var_declaration_statement -> type_declaration ID COMA var_declaration_statement
+Rule 19    var_declaration_statement -> ID COMA var_declaration_statement
+Rule 20    var_declaration_statement -> ID SEMICOLON
+Rule 21    var_declaration_statement -> type_declaration ID SEMICOLON
+Rule 22    type_declaration -> INT
+Rule 23    type_declaration -> CHAR
+Rule 24    type_declaration -> FLOAT
+Rule 25    type_declaration -> BOOL
+Rule 26    write_statement -> WRITE ID SEMICOLON
+Rule 27    sent_assign -> ID EQUAL exp_bool SEMICOLON
+Rule 28    sent_assign -> exp_bool SEMICOLON
+Rule 29    exp_bool -> exp_bool OR comb
+Rule 30    exp_bool -> comb
+Rule 31    comb -> comb AND igualdad
+Rule 32    comb -> igualdad
+Rule 33    igualdad -> igualdad EQUALEQUAL rel
+Rule 34    igualdad -> igualdad DIFFEQUAL rel
+Rule 35    igualdad -> rel
+Rule 36    rel -> expr op_rel expr
+Rule 37    rel -> expr
+Rule 38    op_rel -> LEESTHAN
+Rule 39    op_rel -> MORETHAN
+Rule 40    op_rel -> LEESETHAN
+Rule 41    op_rel -> MOREETHAN
+Rule 42    expr -> expr MINUS term
+Rule 43    expr -> expr PLUS term
+Rule 44    expr -> term
+Rule 45    term -> term TIMES unario
+Rule 46    term -> term DIVIDE unario
+Rule 47    term -> unario
+Rule 48    unario -> NOT unario
+Rule 49    unario -> MINUS unario
+Rule 50    unario -> factor
+Rule 51    factor -> LPAREN RPAREN
+Rule 52    factor -> ID
+Rule 53    factor -> NUMBER
+Rule 54    factor -> DOUBLE
+Rule 55    factor -> TRUE
+Rule 56    factor -> FALSE
+
+Terminals, with rules where they appear
+
+AND                  : 31
+BOOL                 : 25
+BREAK                : 
+CBRACKET             : 1 2 10 11 12 16 17 17
+CHAR                 : 23
+COLON                : 
+COMA                 : 18 19
+DIFFEQUAL            : 34
+DIVIDE               : 46
+DO                   : 10
+DOUBLE               : 54
+DOUBLEMARK           : 
+ELSE                 : 17
+EQUAL                : 27
+EQUALEQUAL           : 33
+EXPONENT             : 
+FALSE                : 56
+FI                   : 16 17
+FLOAT                : 24
+FOR                  : 11
+ID                   : 18 19 20 21 26 27 52
+IF                   : 16 17
+INT                  : 22
+LEESETHAN            : 40
+LEESTHAN             : 38
+LPAREN               : 10 11 12 16 17 51
+MARK                 : 
+MINUS                : 42 49
+MOREETHAN            : 41
+MORETHAN             : 39
+NOT                  : 48
+NUMBER               : 53
+OBRACKET             : 1 2 10 11 12 16 17 17
+OR                   : 29
+PLUS                 : 43
+POINT                : 
+PROGRAM              : 1 2
+READ                 : 
+RESERVED             : 
+RPAREN               : 10 11 12 16 17 51
+SEMICOLON            : 20 21 26 27 28
+TIMES                : 45
+TRUE                 : 55
+UNTIL                : 10
+WHILE                : 12
+WRITE                : 26
+error                : 
+
+Nonterminals, with rules where they appear
+
+comb                 : 29 30 31
+do_while_statement   : 15
+exp_bool             : 27 28 29
+expr                 : 36 36 37 42 43
+factor               : 50
+for_statement        : 13
+if_statement         : 8
+igualdad             : 31 32 33 34
+iteration_statement  : 9
+op_rel               : 36
+program              : 0
+rel                  : 33 34 35
+sent_assign          : 5 10 11 11 12 16 17
+statement            : 3 4
+statement_list       : 1 4 10 11 12 16 17 17
+term                 : 42 43 44 45 46
+type_declaration     : 18 21
+unario               : 45 46 47 48 49
+var_declaration_statement : 7 18 19
+while_statement      : 14
+write_statement      : 6
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . PROGRAM OBRACKET statement_list CBRACKET
+    (2) program -> . PROGRAM OBRACKET CBRACKET
+
+    PROGRAM         shift and go to state 2
+
+    program                        shift and go to state 1
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> PROGRAM . OBRACKET statement_list CBRACKET
+    (2) program -> PROGRAM . OBRACKET CBRACKET
+
+    OBRACKET        shift and go to state 3
+
+
+state 3
+
+    (1) program -> PROGRAM OBRACKET . statement_list CBRACKET
+    (2) program -> PROGRAM OBRACKET . CBRACKET
+    (3) statement_list -> . statement
+    (4) statement_list -> . statement_list statement
+    (5) statement -> . sent_assign
+    (6) statement -> . write_statement
+    (7) statement -> . var_declaration_statement
+    (8) statement -> . if_statement
+    (9) statement -> . iteration_statement
+    (27) sent_assign -> . ID EQUAL exp_bool SEMICOLON
+    (28) sent_assign -> . exp_bool SEMICOLON
+    (26) write_statement -> . WRITE ID SEMICOLON
+    (18) var_declaration_statement -> . type_declaration ID COMA var_declaration_statement
+    (19) var_declaration_statement -> . ID COMA var_declaration_statement
+    (20) var_declaration_statement -> . ID SEMICOLON
+    (21) var_declaration_statement -> . type_declaration ID SEMICOLON
+    (16) if_statement -> . IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET FI
+    (17) if_statement -> . IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI
+    (13) iteration_statement -> . for_statement
+    (14) iteration_statement -> . while_statement
+    (15) iteration_statement -> . do_while_statement
+    (29) exp_bool -> . exp_bool OR comb
+    (30) exp_bool -> . comb
+    (22) type_declaration -> . INT
+    (23) type_declaration -> . CHAR
+    (24) type_declaration -> . FLOAT
+    (25) type_declaration -> . BOOL
+    (11) for_statement -> . FOR LPAREN sent_assign sent_assign RPAREN OBRACKET statement_list CBRACKET
+    (12) while_statement -> . WHILE LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET
+    (10) do_while_statement -> . DO OBRACKET statement_list CBRACKET UNTIL LPAREN sent_assign RPAREN
+    (31) comb -> . comb AND igualdad
+    (32) comb -> . igualdad
+    (33) igualdad -> . igualdad EQUALEQUAL rel
+    (34) igualdad -> . igualdad DIFFEQUAL rel
+    (35) igualdad -> . rel
+    (36) rel -> . expr op_rel expr
+    (37) rel -> . expr
+    (42) expr -> . expr MINUS term
+    (43) expr -> . expr PLUS term
+    (44) expr -> . term
+    (45) term -> . term TIMES unario
+    (46) term -> . term DIVIDE unario
+    (47) term -> . unario
+    (48) unario -> . NOT unario
+    (49) unario -> . MINUS unario
+    (50) unario -> . factor
+    (51) factor -> . LPAREN RPAREN
+    (52) factor -> . ID
+    (53) factor -> . NUMBER
+    (54) factor -> . DOUBLE
+    (55) factor -> . TRUE
+    (56) factor -> . FALSE
+
+    CBRACKET        shift and go to state 5
+    ID              shift and go to state 12
+    WRITE           shift and go to state 14
+    IF              shift and go to state 16
+    INT             shift and go to state 22
+    CHAR            shift and go to state 23
+    FLOAT           shift and go to state 24
+    BOOL            shift and go to state 25
+    FOR             shift and go to state 26
+    WHILE           shift and go to state 27
+    DO              shift and go to state 28
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 32
+    LPAREN          shift and go to state 17
+    NUMBER          shift and go to state 37
+    DOUBLE          shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    statement_list                 shift and go to state 4
+    statement                      shift and go to state 6
+    sent_assign                    shift and go to state 7
+    write_statement                shift and go to state 8
+    var_declaration_statement      shift and go to state 9
+    if_statement                   shift and go to state 10
+    iteration_statement            shift and go to state 11
+    exp_bool                       shift and go to state 13
+    type_declaration               shift and go to state 15
+    for_statement                  shift and go to state 18
+    while_statement                shift and go to state 19
+    do_while_statement             shift and go to state 20
+    comb                           shift and go to state 21
+    igualdad                       shift and go to state 29
+    rel                            shift and go to state 30
+    expr                           shift and go to state 31
+    term                           shift and go to state 33
+    unario                         shift and go to state 34
+    factor                         shift and go to state 36
+
+state 4
+
+    (1) program -> PROGRAM OBRACKET statement_list . CBRACKET
+    (4) statement_list -> statement_list . statement
+    (5) statement -> . sent_assign
+    (6) statement -> . write_statement
+    (7) statement -> . var_declaration_statement
+    (8) statement -> . if_statement
+    (9) statement -> . iteration_statement
+    (27) sent_assign -> . ID EQUAL exp_bool SEMICOLON
+    (28) sent_assign -> . exp_bool SEMICOLON
+    (26) write_statement -> . WRITE ID SEMICOLON
+    (18) var_declaration_statement -> . type_declaration ID COMA var_declaration_statement
+    (19) var_declaration_statement -> . ID COMA var_declaration_statement
+    (20) var_declaration_statement -> . ID SEMICOLON
+    (21) var_declaration_statement -> . type_declaration ID SEMICOLON
+    (16) if_statement -> . IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET FI
+    (17) if_statement -> . IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI
+    (13) iteration_statement -> . for_statement
+    (14) iteration_statement -> . while_statement
+    (15) iteration_statement -> . do_while_statement
+    (29) exp_bool -> . exp_bool OR comb
+    (30) exp_bool -> . comb
+    (22) type_declaration -> . INT
+    (23) type_declaration -> . CHAR
+    (24) type_declaration -> . FLOAT
+    (25) type_declaration -> . BOOL
+    (11) for_statement -> . FOR LPAREN sent_assign sent_assign RPAREN OBRACKET statement_list CBRACKET
+    (12) while_statement -> . WHILE LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET
+    (10) do_while_statement -> . DO OBRACKET statement_list CBRACKET UNTIL LPAREN sent_assign RPAREN
+    (31) comb -> . comb AND igualdad
+    (32) comb -> . igualdad
+    (33) igualdad -> . igualdad EQUALEQUAL rel
+    (34) igualdad -> . igualdad DIFFEQUAL rel
+    (35) igualdad -> . rel
+    (36) rel -> . expr op_rel expr
+    (37) rel -> . expr
+    (42) expr -> . expr MINUS term
+    (43) expr -> . expr PLUS term
+    (44) expr -> . term
+    (45) term -> . term TIMES unario
+    (46) term -> . term DIVIDE unario
+    (47) term -> . unario
+    (48) unario -> . NOT unario
+    (49) unario -> . MINUS unario
+    (50) unario -> . factor
+    (51) factor -> . LPAREN RPAREN
+    (52) factor -> . ID
+    (53) factor -> . NUMBER
+    (54) factor -> . DOUBLE
+    (55) factor -> . TRUE
+    (56) factor -> . FALSE
+
+    CBRACKET        shift and go to state 41
+    ID              shift and go to state 12
+    WRITE           shift and go to state 14
+    IF              shift and go to state 16
+    INT             shift and go to state 22
+    CHAR            shift and go to state 23
+    FLOAT           shift and go to state 24
+    BOOL            shift and go to state 25
+    FOR             shift and go to state 26
+    WHILE           shift and go to state 27
+    DO              shift and go to state 28
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 32
+    LPAREN          shift and go to state 17
+    NUMBER          shift and go to state 37
+    DOUBLE          shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    statement                      shift and go to state 42
+    sent_assign                    shift and go to state 7
+    write_statement                shift and go to state 8
+    var_declaration_statement      shift and go to state 9
+    if_statement                   shift and go to state 10
+    iteration_statement            shift and go to state 11
+    exp_bool                       shift and go to state 13
+    type_declaration               shift and go to state 15
+    for_statement                  shift and go to state 18
+    while_statement                shift and go to state 19
+    do_while_statement             shift and go to state 20
+    comb                           shift and go to state 21
+    igualdad                       shift and go to state 29
+    rel                            shift and go to state 30
+    expr                           shift and go to state 31
+    term                           shift and go to state 33
+    unario                         shift and go to state 34
+    factor                         shift and go to state 36
+
+state 5
+
+    (2) program -> PROGRAM OBRACKET CBRACKET .
+
+    $end            reduce using rule 2 (program -> PROGRAM OBRACKET CBRACKET .)
+
+
+state 6
+
+    (3) statement_list -> statement .
+
+    CBRACKET        reduce using rule 3 (statement_list -> statement .)
+    ID              reduce using rule 3 (statement_list -> statement .)
+    WRITE           reduce using rule 3 (statement_list -> statement .)
+    IF              reduce using rule 3 (statement_list -> statement .)
+    INT             reduce using rule 3 (statement_list -> statement .)
+    CHAR            reduce using rule 3 (statement_list -> statement .)
+    FLOAT           reduce using rule 3 (statement_list -> statement .)
+    BOOL            reduce using rule 3 (statement_list -> statement .)
+    FOR             reduce using rule 3 (statement_list -> statement .)
+    WHILE           reduce using rule 3 (statement_list -> statement .)
+    DO              reduce using rule 3 (statement_list -> statement .)
+    NOT             reduce using rule 3 (statement_list -> statement .)
+    MINUS           reduce using rule 3 (statement_list -> statement .)
+    LPAREN          reduce using rule 3 (statement_list -> statement .)
+    NUMBER          reduce using rule 3 (statement_list -> statement .)
+    DOUBLE          reduce using rule 3 (statement_list -> statement .)
+    TRUE            reduce using rule 3 (statement_list -> statement .)
+    FALSE           reduce using rule 3 (statement_list -> statement .)
+
+
+state 7
+
+    (5) statement -> sent_assign .
+
+    CBRACKET        reduce using rule 5 (statement -> sent_assign .)
+    ID              reduce using rule 5 (statement -> sent_assign .)
+    WRITE           reduce using rule 5 (statement -> sent_assign .)
+    IF              reduce using rule 5 (statement -> sent_assign .)
+    INT             reduce using rule 5 (statement -> sent_assign .)
+    CHAR            reduce using rule 5 (statement -> sent_assign .)
+    FLOAT           reduce using rule 5 (statement -> sent_assign .)
+    BOOL            reduce using rule 5 (statement -> sent_assign .)
+    FOR             reduce using rule 5 (statement -> sent_assign .)
+    WHILE           reduce using rule 5 (statement -> sent_assign .)
+    DO              reduce using rule 5 (statement -> sent_assign .)
+    NOT             reduce using rule 5 (statement -> sent_assign .)
+    MINUS           reduce using rule 5 (statement -> sent_assign .)
+    LPAREN          reduce using rule 5 (statement -> sent_assign .)
+    NUMBER          reduce using rule 5 (statement -> sent_assign .)
+    DOUBLE          reduce using rule 5 (statement -> sent_assign .)
+    TRUE            reduce using rule 5 (statement -> sent_assign .)
+    FALSE           reduce using rule 5 (statement -> sent_assign .)
+
+
+state 8
+
+    (6) statement -> write_statement .
+
+    CBRACKET        reduce using rule 6 (statement -> write_statement .)
+    ID              reduce using rule 6 (statement -> write_statement .)
+    WRITE           reduce using rule 6 (statement -> write_statement .)
+    IF              reduce using rule 6 (statement -> write_statement .)
+    INT             reduce using rule 6 (statement -> write_statement .)
+    CHAR            reduce using rule 6 (statement -> write_statement .)
+    FLOAT           reduce using rule 6 (statement -> write_statement .)
+    BOOL            reduce using rule 6 (statement -> write_statement .)
+    FOR             reduce using rule 6 (statement -> write_statement .)
+    WHILE           reduce using rule 6 (statement -> write_statement .)
+    DO              reduce using rule 6 (statement -> write_statement .)
+    NOT             reduce using rule 6 (statement -> write_statement .)
+    MINUS           reduce using rule 6 (statement -> write_statement .)
+    LPAREN          reduce using rule 6 (statement -> write_statement .)
+    NUMBER          reduce using rule 6 (statement -> write_statement .)
+    DOUBLE          reduce using rule 6 (statement -> write_statement .)
+    TRUE            reduce using rule 6 (statement -> write_statement .)
+    FALSE           reduce using rule 6 (statement -> write_statement .)
+
+
+state 9
+
+    (7) statement -> var_declaration_statement .
+
+    CBRACKET        reduce using rule 7 (statement -> var_declaration_statement .)
+    ID              reduce using rule 7 (statement -> var_declaration_statement .)
+    WRITE           reduce using rule 7 (statement -> var_declaration_statement .)
+    IF              reduce using rule 7 (statement -> var_declaration_statement .)
+    INT             reduce using rule 7 (statement -> var_declaration_statement .)
+    CHAR            reduce using rule 7 (statement -> var_declaration_statement .)
+    FLOAT           reduce using rule 7 (statement -> var_declaration_statement .)
+    BOOL            reduce using rule 7 (statement -> var_declaration_statement .)
+    FOR             reduce using rule 7 (statement -> var_declaration_statement .)
+    WHILE           reduce using rule 7 (statement -> var_declaration_statement .)
+    DO              reduce using rule 7 (statement -> var_declaration_statement .)
+    NOT             reduce using rule 7 (statement -> var_declaration_statement .)
+    MINUS           reduce using rule 7 (statement -> var_declaration_statement .)
+    LPAREN          reduce using rule 7 (statement -> var_declaration_statement .)
+    NUMBER          reduce using rule 7 (statement -> var_declaration_statement .)
+    DOUBLE          reduce using rule 7 (statement -> var_declaration_statement .)
+    TRUE            reduce using rule 7 (statement -> var_declaration_statement .)
+    FALSE           reduce using rule 7 (statement -> var_declaration_statement .)
+
+
+state 10
+
+    (8) statement -> if_statement .
+
+    CBRACKET        reduce using rule 8 (statement -> if_statement .)
+    ID              reduce using rule 8 (statement -> if_statement .)
+    WRITE           reduce using rule 8 (statement -> if_statement .)
+    IF              reduce using rule 8 (statement -> if_statement .)
+    INT             reduce using rule 8 (statement -> if_statement .)
+    CHAR            reduce using rule 8 (statement -> if_statement .)
+    FLOAT           reduce using rule 8 (statement -> if_statement .)
+    BOOL            reduce using rule 8 (statement -> if_statement .)
+    FOR             reduce using rule 8 (statement -> if_statement .)
+    WHILE           reduce using rule 8 (statement -> if_statement .)
+    DO              reduce using rule 8 (statement -> if_statement .)
+    NOT             reduce using rule 8 (statement -> if_statement .)
+    MINUS           reduce using rule 8 (statement -> if_statement .)
+    LPAREN          reduce using rule 8 (statement -> if_statement .)
+    NUMBER          reduce using rule 8 (statement -> if_statement .)
+    DOUBLE          reduce using rule 8 (statement -> if_statement .)
+    TRUE            reduce using rule 8 (statement -> if_statement .)
+    FALSE           reduce using rule 8 (statement -> if_statement .)
+
+
+state 11
+
+    (9) statement -> iteration_statement .
+
+    CBRACKET        reduce using rule 9 (statement -> iteration_statement .)
+    ID              reduce using rule 9 (statement -> iteration_statement .)
+    WRITE           reduce using rule 9 (statement -> iteration_statement .)
+    IF              reduce using rule 9 (statement -> iteration_statement .)
+    INT             reduce using rule 9 (statement -> iteration_statement .)
+    CHAR            reduce using rule 9 (statement -> iteration_statement .)
+    FLOAT           reduce using rule 9 (statement -> iteration_statement .)
+    BOOL            reduce using rule 9 (statement -> iteration_statement .)
+    FOR             reduce using rule 9 (statement -> iteration_statement .)
+    WHILE           reduce using rule 9 (statement -> iteration_statement .)
+    DO              reduce using rule 9 (statement -> iteration_statement .)
+    NOT             reduce using rule 9 (statement -> iteration_statement .)
+    MINUS           reduce using rule 9 (statement -> iteration_statement .)
+    LPAREN          reduce using rule 9 (statement -> iteration_statement .)
+    NUMBER          reduce using rule 9 (statement -> iteration_statement .)
+    DOUBLE          reduce using rule 9 (statement -> iteration_statement .)
+    TRUE            reduce using rule 9 (statement -> iteration_statement .)
+    FALSE           reduce using rule 9 (statement -> iteration_statement .)
+
+
+state 12
+
+    (27) sent_assign -> ID . EQUAL exp_bool SEMICOLON
+    (19) var_declaration_statement -> ID . COMA var_declaration_statement
+    (20) var_declaration_statement -> ID . SEMICOLON
+    (52) factor -> ID .
+
+  ! shift/reduce conflict for SEMICOLON resolved as shift
+    EQUAL           shift and go to state 43
+    COMA            shift and go to state 45
+    SEMICOLON       shift and go to state 44
+    TIMES           reduce using rule 52 (factor -> ID .)
+    DIVIDE          reduce using rule 52 (factor -> ID .)
+    MINUS           reduce using rule 52 (factor -> ID .)
+    PLUS            reduce using rule 52 (factor -> ID .)
+    LEESTHAN        reduce using rule 52 (factor -> ID .)
+    MORETHAN        reduce using rule 52 (factor -> ID .)
+    LEESETHAN       reduce using rule 52 (factor -> ID .)
+    MOREETHAN       reduce using rule 52 (factor -> ID .)
+    EQUALEQUAL      reduce using rule 52 (factor -> ID .)
+    DIFFEQUAL       reduce using rule 52 (factor -> ID .)
+    AND             reduce using rule 52 (factor -> ID .)
+    OR              reduce using rule 52 (factor -> ID .)
+
+  ! SEMICOLON       [ reduce using rule 52 (factor -> ID .) ]
+
+
+state 13
+
+    (28) sent_assign -> exp_bool . SEMICOLON
+    (29) exp_bool -> exp_bool . OR comb
+
+    SEMICOLON       shift and go to state 46
+    OR              shift and go to state 47
+
+
+state 14
+
+    (26) write_statement -> WRITE . ID SEMICOLON
+
+    ID              shift and go to state 48
+
+
+state 15
+
+    (18) var_declaration_statement -> type_declaration . ID COMA var_declaration_statement
+    (21) var_declaration_statement -> type_declaration . ID SEMICOLON
+
+    ID              shift and go to state 49
+
+
+state 16
+
+    (16) if_statement -> IF . LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET FI
+    (17) if_statement -> IF . LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI
+
+    LPAREN          shift and go to state 50
+
+
+state 17
+
+    (51) factor -> LPAREN . RPAREN
+
+    RPAREN          shift and go to state 51
+
+
+state 18
+
+    (13) iteration_statement -> for_statement .
+
+    CBRACKET        reduce using rule 13 (iteration_statement -> for_statement .)
+    ID              reduce using rule 13 (iteration_statement -> for_statement .)
+    WRITE           reduce using rule 13 (iteration_statement -> for_statement .)
+    IF              reduce using rule 13 (iteration_statement -> for_statement .)
+    INT             reduce using rule 13 (iteration_statement -> for_statement .)
+    CHAR            reduce using rule 13 (iteration_statement -> for_statement .)
+    FLOAT           reduce using rule 13 (iteration_statement -> for_statement .)
+    BOOL            reduce using rule 13 (iteration_statement -> for_statement .)
+    FOR             reduce using rule 13 (iteration_statement -> for_statement .)
+    WHILE           reduce using rule 13 (iteration_statement -> for_statement .)
+    DO              reduce using rule 13 (iteration_statement -> for_statement .)
+    NOT             reduce using rule 13 (iteration_statement -> for_statement .)
+    MINUS           reduce using rule 13 (iteration_statement -> for_statement .)
+    LPAREN          reduce using rule 13 (iteration_statement -> for_statement .)
+    NUMBER          reduce using rule 13 (iteration_statement -> for_statement .)
+    DOUBLE          reduce using rule 13 (iteration_statement -> for_statement .)
+    TRUE            reduce using rule 13 (iteration_statement -> for_statement .)
+    FALSE           reduce using rule 13 (iteration_statement -> for_statement .)
+
+
+state 19
+
+    (14) iteration_statement -> while_statement .
+
+    CBRACKET        reduce using rule 14 (iteration_statement -> while_statement .)
+    ID              reduce using rule 14 (iteration_statement -> while_statement .)
+    WRITE           reduce using rule 14 (iteration_statement -> while_statement .)
+    IF              reduce using rule 14 (iteration_statement -> while_statement .)
+    INT             reduce using rule 14 (iteration_statement -> while_statement .)
+    CHAR            reduce using rule 14 (iteration_statement -> while_statement .)
+    FLOAT           reduce using rule 14 (iteration_statement -> while_statement .)
+    BOOL            reduce using rule 14 (iteration_statement -> while_statement .)
+    FOR             reduce using rule 14 (iteration_statement -> while_statement .)
+    WHILE           reduce using rule 14 (iteration_statement -> while_statement .)
+    DO              reduce using rule 14 (iteration_statement -> while_statement .)
+    NOT             reduce using rule 14 (iteration_statement -> while_statement .)
+    MINUS           reduce using rule 14 (iteration_statement -> while_statement .)
+    LPAREN          reduce using rule 14 (iteration_statement -> while_statement .)
+    NUMBER          reduce using rule 14 (iteration_statement -> while_statement .)
+    DOUBLE          reduce using rule 14 (iteration_statement -> while_statement .)
+    TRUE            reduce using rule 14 (iteration_statement -> while_statement .)
+    FALSE           reduce using rule 14 (iteration_statement -> while_statement .)
+
+
+state 20
+
+    (15) iteration_statement -> do_while_statement .
+
+    CBRACKET        reduce using rule 15 (iteration_statement -> do_while_statement .)
+    ID              reduce using rule 15 (iteration_statement -> do_while_statement .)
+    WRITE           reduce using rule 15 (iteration_statement -> do_while_statement .)
+    IF              reduce using rule 15 (iteration_statement -> do_while_statement .)
+    INT             reduce using rule 15 (iteration_statement -> do_while_statement .)
+    CHAR            reduce using rule 15 (iteration_statement -> do_while_statement .)
+    FLOAT           reduce using rule 15 (iteration_statement -> do_while_statement .)
+    BOOL            reduce using rule 15 (iteration_statement -> do_while_statement .)
+    FOR             reduce using rule 15 (iteration_statement -> do_while_statement .)
+    WHILE           reduce using rule 15 (iteration_statement -> do_while_statement .)
+    DO              reduce using rule 15 (iteration_statement -> do_while_statement .)
+    NOT             reduce using rule 15 (iteration_statement -> do_while_statement .)
+    MINUS           reduce using rule 15 (iteration_statement -> do_while_statement .)
+    LPAREN          reduce using rule 15 (iteration_statement -> do_while_statement .)
+    NUMBER          reduce using rule 15 (iteration_statement -> do_while_statement .)
+    DOUBLE          reduce using rule 15 (iteration_statement -> do_while_statement .)
+    TRUE            reduce using rule 15 (iteration_statement -> do_while_statement .)
+    FALSE           reduce using rule 15 (iteration_statement -> do_while_statement .)
+
+
+state 21
+
+    (30) exp_bool -> comb .
+    (31) comb -> comb . AND igualdad
+
+    SEMICOLON       reduce using rule 30 (exp_bool -> comb .)
+    OR              reduce using rule 30 (exp_bool -> comb .)
+    AND             shift and go to state 52
+
+
+state 22
+
+    (22) type_declaration -> INT .
+
+    ID              reduce using rule 22 (type_declaration -> INT .)
+
+
+state 23
+
+    (23) type_declaration -> CHAR .
+
+    ID              reduce using rule 23 (type_declaration -> CHAR .)
+
+
+state 24
+
+    (24) type_declaration -> FLOAT .
+
+    ID              reduce using rule 24 (type_declaration -> FLOAT .)
+
+
+state 25
+
+    (25) type_declaration -> BOOL .
+
+    ID              reduce using rule 25 (type_declaration -> BOOL .)
+
+
+state 26
+
+    (11) for_statement -> FOR . LPAREN sent_assign sent_assign RPAREN OBRACKET statement_list CBRACKET
+
+    LPAREN          shift and go to state 53
+
+
+state 27
+
+    (12) while_statement -> WHILE . LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET
+
+    LPAREN          shift and go to state 54
+
+
+state 28
+
+    (10) do_while_statement -> DO . OBRACKET statement_list CBRACKET UNTIL LPAREN sent_assign RPAREN
+
+    OBRACKET        shift and go to state 55
+
+
+state 29
+
+    (32) comb -> igualdad .
+    (33) igualdad -> igualdad . EQUALEQUAL rel
+    (34) igualdad -> igualdad . DIFFEQUAL rel
+
+    AND             reduce using rule 32 (comb -> igualdad .)
+    SEMICOLON       reduce using rule 32 (comb -> igualdad .)
+    OR              reduce using rule 32 (comb -> igualdad .)
+    EQUALEQUAL      shift and go to state 56
+    DIFFEQUAL       shift and go to state 57
+
+
+state 30
+
+    (35) igualdad -> rel .
+
+    EQUALEQUAL      reduce using rule 35 (igualdad -> rel .)
+    DIFFEQUAL       reduce using rule 35 (igualdad -> rel .)
+    AND             reduce using rule 35 (igualdad -> rel .)
+    SEMICOLON       reduce using rule 35 (igualdad -> rel .)
+    OR              reduce using rule 35 (igualdad -> rel .)
+
+
+state 31
+
+    (36) rel -> expr . op_rel expr
+    (37) rel -> expr .
+    (42) expr -> expr . MINUS term
+    (43) expr -> expr . PLUS term
+    (38) op_rel -> . LEESTHAN
+    (39) op_rel -> . MORETHAN
+    (40) op_rel -> . LEESETHAN
+    (41) op_rel -> . MOREETHAN
+
+    EQUALEQUAL      reduce using rule 37 (rel -> expr .)
+    DIFFEQUAL       reduce using rule 37 (rel -> expr .)
+    AND             reduce using rule 37 (rel -> expr .)
+    SEMICOLON       reduce using rule 37 (rel -> expr .)
+    OR              reduce using rule 37 (rel -> expr .)
+    MINUS           shift and go to state 59
+    PLUS            shift and go to state 60
+    LEESTHAN        shift and go to state 61
+    MORETHAN        shift and go to state 62
+    LEESETHAN       shift and go to state 63
+    MOREETHAN       shift and go to state 64
+
+    op_rel                         shift and go to state 58
+
+state 32
+
+    (49) unario -> MINUS . unario
+    (48) unario -> . NOT unario
+    (49) unario -> . MINUS unario
+    (50) unario -> . factor
+    (51) factor -> . LPAREN RPAREN
+    (52) factor -> . ID
+    (53) factor -> . NUMBER
+    (54) factor -> . DOUBLE
+    (55) factor -> . TRUE
+    (56) factor -> . FALSE
+
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 32
+    LPAREN          shift and go to state 17
+    ID              shift and go to state 66
+    NUMBER          shift and go to state 37
+    DOUBLE          shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    unario                         shift and go to state 65
+    factor                         shift and go to state 36
+
+state 33
+
+    (44) expr -> term .
+    (45) term -> term . TIMES unario
+    (46) term -> term . DIVIDE unario
+
+    MINUS           reduce using rule 44 (expr -> term .)
+    PLUS            reduce using rule 44 (expr -> term .)
+    LEESTHAN        reduce using rule 44 (expr -> term .)
+    MORETHAN        reduce using rule 44 (expr -> term .)
+    LEESETHAN       reduce using rule 44 (expr -> term .)
+    MOREETHAN       reduce using rule 44 (expr -> term .)
+    EQUALEQUAL      reduce using rule 44 (expr -> term .)
+    DIFFEQUAL       reduce using rule 44 (expr -> term .)
+    AND             reduce using rule 44 (expr -> term .)
+    SEMICOLON       reduce using rule 44 (expr -> term .)
+    OR              reduce using rule 44 (expr -> term .)
+    TIMES           shift and go to state 67
+    DIVIDE          shift and go to state 68
+
+
+state 34
+
+    (47) term -> unario .
+
+    TIMES           reduce using rule 47 (term -> unario .)
+    DIVIDE          reduce using rule 47 (term -> unario .)
+    MINUS           reduce using rule 47 (term -> unario .)
+    PLUS            reduce using rule 47 (term -> unario .)
+    LEESTHAN        reduce using rule 47 (term -> unario .)
+    MORETHAN        reduce using rule 47 (term -> unario .)
+    LEESETHAN       reduce using rule 47 (term -> unario .)
+    MOREETHAN       reduce using rule 47 (term -> unario .)
+    EQUALEQUAL      reduce using rule 47 (term -> unario .)
+    DIFFEQUAL       reduce using rule 47 (term -> unario .)
+    AND             reduce using rule 47 (term -> unario .)
+    SEMICOLON       reduce using rule 47 (term -> unario .)
+    OR              reduce using rule 47 (term -> unario .)
+
+
+state 35
+
+    (48) unario -> NOT . unario
+    (48) unario -> . NOT unario
+    (49) unario -> . MINUS unario
+    (50) unario -> . factor
+    (51) factor -> . LPAREN RPAREN
+    (52) factor -> . ID
+    (53) factor -> . NUMBER
+    (54) factor -> . DOUBLE
+    (55) factor -> . TRUE
+    (56) factor -> . FALSE
+
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 32
+    LPAREN          shift and go to state 17
+    ID              shift and go to state 66
+    NUMBER          shift and go to state 37
+    DOUBLE          shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    unario                         shift and go to state 69
+    factor                         shift and go to state 36
+
+state 36
+
+    (50) unario -> factor .
+
+    TIMES           reduce using rule 50 (unario -> factor .)
+    DIVIDE          reduce using rule 50 (unario -> factor .)
+    MINUS           reduce using rule 50 (unario -> factor .)
+    PLUS            reduce using rule 50 (unario -> factor .)
+    LEESTHAN        reduce using rule 50 (unario -> factor .)
+    MORETHAN        reduce using rule 50 (unario -> factor .)
+    LEESETHAN       reduce using rule 50 (unario -> factor .)
+    MOREETHAN       reduce using rule 50 (unario -> factor .)
+    EQUALEQUAL      reduce using rule 50 (unario -> factor .)
+    DIFFEQUAL       reduce using rule 50 (unario -> factor .)
+    AND             reduce using rule 50 (unario -> factor .)
+    SEMICOLON       reduce using rule 50 (unario -> factor .)
+    OR              reduce using rule 50 (unario -> factor .)
+
+
+state 37
+
+    (53) factor -> NUMBER .
+
+    TIMES           reduce using rule 53 (factor -> NUMBER .)
+    DIVIDE          reduce using rule 53 (factor -> NUMBER .)
+    MINUS           reduce using rule 53 (factor -> NUMBER .)
+    PLUS            reduce using rule 53 (factor -> NUMBER .)
+    LEESTHAN        reduce using rule 53 (factor -> NUMBER .)
+    MORETHAN        reduce using rule 53 (factor -> NUMBER .)
+    LEESETHAN       reduce using rule 53 (factor -> NUMBER .)
+    MOREETHAN       reduce using rule 53 (factor -> NUMBER .)
+    EQUALEQUAL      reduce using rule 53 (factor -> NUMBER .)
+    DIFFEQUAL       reduce using rule 53 (factor -> NUMBER .)
+    AND             reduce using rule 53 (factor -> NUMBER .)
+    SEMICOLON       reduce using rule 53 (factor -> NUMBER .)
+    OR              reduce using rule 53 (factor -> NUMBER .)
+
+
+state 38
+
+    (54) factor -> DOUBLE .
+
+    TIMES           reduce using rule 54 (factor -> DOUBLE .)
+    DIVIDE          reduce using rule 54 (factor -> DOUBLE .)
+    MINUS           reduce using rule 54 (factor -> DOUBLE .)
+    PLUS            reduce using rule 54 (factor -> DOUBLE .)
+    LEESTHAN        reduce using rule 54 (factor -> DOUBLE .)
+    MORETHAN        reduce using rule 54 (factor -> DOUBLE .)
+    LEESETHAN       reduce using rule 54 (factor -> DOUBLE .)
+    MOREETHAN       reduce using rule 54 (factor -> DOUBLE .)
+    EQUALEQUAL      reduce using rule 54 (factor -> DOUBLE .)
+    DIFFEQUAL       reduce using rule 54 (factor -> DOUBLE .)
+    AND             reduce using rule 54 (factor -> DOUBLE .)
+    SEMICOLON       reduce using rule 54 (factor -> DOUBLE .)
+    OR              reduce using rule 54 (factor -> DOUBLE .)
+
+
+state 39
+
+    (55) factor -> TRUE .
+
+    TIMES           reduce using rule 55 (factor -> TRUE .)
+    DIVIDE          reduce using rule 55 (factor -> TRUE .)
+    MINUS           reduce using rule 55 (factor -> TRUE .)
+    PLUS            reduce using rule 55 (factor -> TRUE .)
+    LEESTHAN        reduce using rule 55 (factor -> TRUE .)
+    MORETHAN        reduce using rule 55 (factor -> TRUE .)
+    LEESETHAN       reduce using rule 55 (factor -> TRUE .)
+    MOREETHAN       reduce using rule 55 (factor -> TRUE .)
+    EQUALEQUAL      reduce using rule 55 (factor -> TRUE .)
+    DIFFEQUAL       reduce using rule 55 (factor -> TRUE .)
+    AND             reduce using rule 55 (factor -> TRUE .)
+    SEMICOLON       reduce using rule 55 (factor -> TRUE .)
+    OR              reduce using rule 55 (factor -> TRUE .)
+
+
+state 40
+
+    (56) factor -> FALSE .
+
+    TIMES           reduce using rule 56 (factor -> FALSE .)
+    DIVIDE          reduce using rule 56 (factor -> FALSE .)
+    MINUS           reduce using rule 56 (factor -> FALSE .)
+    PLUS            reduce using rule 56 (factor -> FALSE .)
+    LEESTHAN        reduce using rule 56 (factor -> FALSE .)
+    MORETHAN        reduce using rule 56 (factor -> FALSE .)
+    LEESETHAN       reduce using rule 56 (factor -> FALSE .)
+    MOREETHAN       reduce using rule 56 (factor -> FALSE .)
+    EQUALEQUAL      reduce using rule 56 (factor -> FALSE .)
+    DIFFEQUAL       reduce using rule 56 (factor -> FALSE .)
+    AND             reduce using rule 56 (factor -> FALSE .)
+    SEMICOLON       reduce using rule 56 (factor -> FALSE .)
+    OR              reduce using rule 56 (factor -> FALSE .)
+
+
+state 41
+
+    (1) program -> PROGRAM OBRACKET statement_list CBRACKET .
+
+    $end            reduce using rule 1 (program -> PROGRAM OBRACKET statement_list CBRACKET .)
+
+
+state 42
+
+    (4) statement_list -> statement_list statement .
+
+    CBRACKET        reduce using rule 4 (statement_list -> statement_list statement .)
+    ID              reduce using rule 4 (statement_list -> statement_list statement .)
+    WRITE           reduce using rule 4 (statement_list -> statement_list statement .)
+    IF              reduce using rule 4 (statement_list -> statement_list statement .)
+    INT             reduce using rule 4 (statement_list -> statement_list statement .)
+    CHAR            reduce using rule 4 (statement_list -> statement_list statement .)
+    FLOAT           reduce using rule 4 (statement_list -> statement_list statement .)
+    BOOL            reduce using rule 4 (statement_list -> statement_list statement .)
+    FOR             reduce using rule 4 (statement_list -> statement_list statement .)
+    WHILE           reduce using rule 4 (statement_list -> statement_list statement .)
+    DO              reduce using rule 4 (statement_list -> statement_list statement .)
+    NOT             reduce using rule 4 (statement_list -> statement_list statement .)
+    MINUS           reduce using rule 4 (statement_list -> statement_list statement .)
+    LPAREN          reduce using rule 4 (statement_list -> statement_list statement .)
+    NUMBER          reduce using rule 4 (statement_list -> statement_list statement .)
+    DOUBLE          reduce using rule 4 (statement_list -> statement_list statement .)
+    TRUE            reduce using rule 4 (statement_list -> statement_list statement .)
+    FALSE           reduce using rule 4 (statement_list -> statement_list statement .)
+
+
+state 43
+
+    (27) sent_assign -> ID EQUAL . exp_bool SEMICOLON
+    (29) exp_bool -> . exp_bool OR comb
+    (30) exp_bool -> . comb
+    (31) comb -> . comb AND igualdad
+    (32) comb -> . igualdad
+    (33) igualdad -> . igualdad EQUALEQUAL rel
+    (34) igualdad -> . igualdad DIFFEQUAL rel
+    (35) igualdad -> . rel
+    (36) rel -> . expr op_rel expr
+    (37) rel -> . expr
+    (42) expr -> . expr MINUS term
+    (43) expr -> . expr PLUS term
+    (44) expr -> . term
+    (45) term -> . term TIMES unario
+    (46) term -> . term DIVIDE unario
+    (47) term -> . unario
+    (48) unario -> . NOT unario
+    (49) unario -> . MINUS unario
+    (50) unario -> . factor
+    (51) factor -> . LPAREN RPAREN
+    (52) factor -> . ID
+    (53) factor -> . NUMBER
+    (54) factor -> . DOUBLE
+    (55) factor -> . TRUE
+    (56) factor -> . FALSE
+
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 32
+    LPAREN          shift and go to state 17
+    ID              shift and go to state 66
+    NUMBER          shift and go to state 37
+    DOUBLE          shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    exp_bool                       shift and go to state 70
+    comb                           shift and go to state 21
+    igualdad                       shift and go to state 29
+    rel                            shift and go to state 30
+    expr                           shift and go to state 31
+    term                           shift and go to state 33
+    unario                         shift and go to state 34
+    factor                         shift and go to state 36
+
+state 44
+
+    (20) var_declaration_statement -> ID SEMICOLON .
+
+    CBRACKET        reduce using rule 20 (var_declaration_statement -> ID SEMICOLON .)
+    ID              reduce using rule 20 (var_declaration_statement -> ID SEMICOLON .)
+    WRITE           reduce using rule 20 (var_declaration_statement -> ID SEMICOLON .)
+    IF              reduce using rule 20 (var_declaration_statement -> ID SEMICOLON .)
+    INT             reduce using rule 20 (var_declaration_statement -> ID SEMICOLON .)
+    CHAR            reduce using rule 20 (var_declaration_statement -> ID SEMICOLON .)
+    FLOAT           reduce using rule 20 (var_declaration_statement -> ID SEMICOLON .)
+    BOOL            reduce using rule 20 (var_declaration_statement -> ID SEMICOLON .)
+    FOR             reduce using rule 20 (var_declaration_statement -> ID SEMICOLON .)
+    WHILE           reduce using rule 20 (var_declaration_statement -> ID SEMICOLON .)
+    DO              reduce using rule 20 (var_declaration_statement -> ID SEMICOLON .)
+    NOT             reduce using rule 20 (var_declaration_statement -> ID SEMICOLON .)
+    MINUS           reduce using rule 20 (var_declaration_statement -> ID SEMICOLON .)
+    LPAREN          reduce using rule 20 (var_declaration_statement -> ID SEMICOLON .)
+    NUMBER          reduce using rule 20 (var_declaration_statement -> ID SEMICOLON .)
+    DOUBLE          reduce using rule 20 (var_declaration_statement -> ID SEMICOLON .)
+    TRUE            reduce using rule 20 (var_declaration_statement -> ID SEMICOLON .)
+    FALSE           reduce using rule 20 (var_declaration_statement -> ID SEMICOLON .)
+
+
+state 45
+
+    (19) var_declaration_statement -> ID COMA . var_declaration_statement
+    (18) var_declaration_statement -> . type_declaration ID COMA var_declaration_statement
+    (19) var_declaration_statement -> . ID COMA var_declaration_statement
+    (20) var_declaration_statement -> . ID SEMICOLON
+    (21) var_declaration_statement -> . type_declaration ID SEMICOLON
+    (22) type_declaration -> . INT
+    (23) type_declaration -> . CHAR
+    (24) type_declaration -> . FLOAT
+    (25) type_declaration -> . BOOL
+
+    ID              shift and go to state 71
+    INT             shift and go to state 22
+    CHAR            shift and go to state 23
+    FLOAT           shift and go to state 24
+    BOOL            shift and go to state 25
+
+    var_declaration_statement      shift and go to state 72
+    type_declaration               shift and go to state 15
+
+state 46
+
+    (28) sent_assign -> exp_bool SEMICOLON .
+
+    CBRACKET        reduce using rule 28 (sent_assign -> exp_bool SEMICOLON .)
+    ID              reduce using rule 28 (sent_assign -> exp_bool SEMICOLON .)
+    WRITE           reduce using rule 28 (sent_assign -> exp_bool SEMICOLON .)
+    IF              reduce using rule 28 (sent_assign -> exp_bool SEMICOLON .)
+    INT             reduce using rule 28 (sent_assign -> exp_bool SEMICOLON .)
+    CHAR            reduce using rule 28 (sent_assign -> exp_bool SEMICOLON .)
+    FLOAT           reduce using rule 28 (sent_assign -> exp_bool SEMICOLON .)
+    BOOL            reduce using rule 28 (sent_assign -> exp_bool SEMICOLON .)
+    FOR             reduce using rule 28 (sent_assign -> exp_bool SEMICOLON .)
+    WHILE           reduce using rule 28 (sent_assign -> exp_bool SEMICOLON .)
+    DO              reduce using rule 28 (sent_assign -> exp_bool SEMICOLON .)
+    NOT             reduce using rule 28 (sent_assign -> exp_bool SEMICOLON .)
+    MINUS           reduce using rule 28 (sent_assign -> exp_bool SEMICOLON .)
+    LPAREN          reduce using rule 28 (sent_assign -> exp_bool SEMICOLON .)
+    NUMBER          reduce using rule 28 (sent_assign -> exp_bool SEMICOLON .)
+    DOUBLE          reduce using rule 28 (sent_assign -> exp_bool SEMICOLON .)
+    TRUE            reduce using rule 28 (sent_assign -> exp_bool SEMICOLON .)
+    FALSE           reduce using rule 28 (sent_assign -> exp_bool SEMICOLON .)
+    RPAREN          reduce using rule 28 (sent_assign -> exp_bool SEMICOLON .)
+
+
+state 47
+
+    (29) exp_bool -> exp_bool OR . comb
+    (31) comb -> . comb AND igualdad
+    (32) comb -> . igualdad
+    (33) igualdad -> . igualdad EQUALEQUAL rel
+    (34) igualdad -> . igualdad DIFFEQUAL rel
+    (35) igualdad -> . rel
+    (36) rel -> . expr op_rel expr
+    (37) rel -> . expr
+    (42) expr -> . expr MINUS term
+    (43) expr -> . expr PLUS term
+    (44) expr -> . term
+    (45) term -> . term TIMES unario
+    (46) term -> . term DIVIDE unario
+    (47) term -> . unario
+    (48) unario -> . NOT unario
+    (49) unario -> . MINUS unario
+    (50) unario -> . factor
+    (51) factor -> . LPAREN RPAREN
+    (52) factor -> . ID
+    (53) factor -> . NUMBER
+    (54) factor -> . DOUBLE
+    (55) factor -> . TRUE
+    (56) factor -> . FALSE
+
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 32
+    LPAREN          shift and go to state 17
+    ID              shift and go to state 66
+    NUMBER          shift and go to state 37
+    DOUBLE          shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    comb                           shift and go to state 73
+    igualdad                       shift and go to state 29
+    rel                            shift and go to state 30
+    expr                           shift and go to state 31
+    term                           shift and go to state 33
+    unario                         shift and go to state 34
+    factor                         shift and go to state 36
+
+state 48
+
+    (26) write_statement -> WRITE ID . SEMICOLON
+
+    SEMICOLON       shift and go to state 74
+
+
+state 49
+
+    (18) var_declaration_statement -> type_declaration ID . COMA var_declaration_statement
+    (21) var_declaration_statement -> type_declaration ID . SEMICOLON
+
+    COMA            shift and go to state 75
+    SEMICOLON       shift and go to state 76
+
+
+state 50
+
+    (16) if_statement -> IF LPAREN . sent_assign RPAREN OBRACKET statement_list CBRACKET FI
+    (17) if_statement -> IF LPAREN . sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI
+    (27) sent_assign -> . ID EQUAL exp_bool SEMICOLON
+    (28) sent_assign -> . exp_bool SEMICOLON
+    (29) exp_bool -> . exp_bool OR comb
+    (30) exp_bool -> . comb
+    (31) comb -> . comb AND igualdad
+    (32) comb -> . igualdad
+    (33) igualdad -> . igualdad EQUALEQUAL rel
+    (34) igualdad -> . igualdad DIFFEQUAL rel
+    (35) igualdad -> . rel
+    (36) rel -> . expr op_rel expr
+    (37) rel -> . expr
+    (42) expr -> . expr MINUS term
+    (43) expr -> . expr PLUS term
+    (44) expr -> . term
+    (45) term -> . term TIMES unario
+    (46) term -> . term DIVIDE unario
+    (47) term -> . unario
+    (48) unario -> . NOT unario
+    (49) unario -> . MINUS unario
+    (50) unario -> . factor
+    (51) factor -> . LPAREN RPAREN
+    (52) factor -> . ID
+    (53) factor -> . NUMBER
+    (54) factor -> . DOUBLE
+    (55) factor -> . TRUE
+    (56) factor -> . FALSE
+
+    ID              shift and go to state 78
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 32
+    LPAREN          shift and go to state 17
+    NUMBER          shift and go to state 37
+    DOUBLE          shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    sent_assign                    shift and go to state 77
+    exp_bool                       shift and go to state 13
+    comb                           shift and go to state 21
+    igualdad                       shift and go to state 29
+    rel                            shift and go to state 30
+    expr                           shift and go to state 31
+    term                           shift and go to state 33
+    unario                         shift and go to state 34
+    factor                         shift and go to state 36
+
+state 51
+
+    (51) factor -> LPAREN RPAREN .
+
+    TIMES           reduce using rule 51 (factor -> LPAREN RPAREN .)
+    DIVIDE          reduce using rule 51 (factor -> LPAREN RPAREN .)
+    MINUS           reduce using rule 51 (factor -> LPAREN RPAREN .)
+    PLUS            reduce using rule 51 (factor -> LPAREN RPAREN .)
+    LEESTHAN        reduce using rule 51 (factor -> LPAREN RPAREN .)
+    MORETHAN        reduce using rule 51 (factor -> LPAREN RPAREN .)
+    LEESETHAN       reduce using rule 51 (factor -> LPAREN RPAREN .)
+    MOREETHAN       reduce using rule 51 (factor -> LPAREN RPAREN .)
+    EQUALEQUAL      reduce using rule 51 (factor -> LPAREN RPAREN .)
+    DIFFEQUAL       reduce using rule 51 (factor -> LPAREN RPAREN .)
+    AND             reduce using rule 51 (factor -> LPAREN RPAREN .)
+    SEMICOLON       reduce using rule 51 (factor -> LPAREN RPAREN .)
+    OR              reduce using rule 51 (factor -> LPAREN RPAREN .)
+
+
+state 52
+
+    (31) comb -> comb AND . igualdad
+    (33) igualdad -> . igualdad EQUALEQUAL rel
+    (34) igualdad -> . igualdad DIFFEQUAL rel
+    (35) igualdad -> . rel
+    (36) rel -> . expr op_rel expr
+    (37) rel -> . expr
+    (42) expr -> . expr MINUS term
+    (43) expr -> . expr PLUS term
+    (44) expr -> . term
+    (45) term -> . term TIMES unario
+    (46) term -> . term DIVIDE unario
+    (47) term -> . unario
+    (48) unario -> . NOT unario
+    (49) unario -> . MINUS unario
+    (50) unario -> . factor
+    (51) factor -> . LPAREN RPAREN
+    (52) factor -> . ID
+    (53) factor -> . NUMBER
+    (54) factor -> . DOUBLE
+    (55) factor -> . TRUE
+    (56) factor -> . FALSE
+
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 32
+    LPAREN          shift and go to state 17
+    ID              shift and go to state 66
+    NUMBER          shift and go to state 37
+    DOUBLE          shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    igualdad                       shift and go to state 79
+    rel                            shift and go to state 30
+    expr                           shift and go to state 31
+    term                           shift and go to state 33
+    unario                         shift and go to state 34
+    factor                         shift and go to state 36
+
+state 53
+
+    (11) for_statement -> FOR LPAREN . sent_assign sent_assign RPAREN OBRACKET statement_list CBRACKET
+    (27) sent_assign -> . ID EQUAL exp_bool SEMICOLON
+    (28) sent_assign -> . exp_bool SEMICOLON
+    (29) exp_bool -> . exp_bool OR comb
+    (30) exp_bool -> . comb
+    (31) comb -> . comb AND igualdad
+    (32) comb -> . igualdad
+    (33) igualdad -> . igualdad EQUALEQUAL rel
+    (34) igualdad -> . igualdad DIFFEQUAL rel
+    (35) igualdad -> . rel
+    (36) rel -> . expr op_rel expr
+    (37) rel -> . expr
+    (42) expr -> . expr MINUS term
+    (43) expr -> . expr PLUS term
+    (44) expr -> . term
+    (45) term -> . term TIMES unario
+    (46) term -> . term DIVIDE unario
+    (47) term -> . unario
+    (48) unario -> . NOT unario
+    (49) unario -> . MINUS unario
+    (50) unario -> . factor
+    (51) factor -> . LPAREN RPAREN
+    (52) factor -> . ID
+    (53) factor -> . NUMBER
+    (54) factor -> . DOUBLE
+    (55) factor -> . TRUE
+    (56) factor -> . FALSE
+
+    ID              shift and go to state 78
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 32
+    LPAREN          shift and go to state 17
+    NUMBER          shift and go to state 37
+    DOUBLE          shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    sent_assign                    shift and go to state 80
+    exp_bool                       shift and go to state 13
+    comb                           shift and go to state 21
+    igualdad                       shift and go to state 29
+    rel                            shift and go to state 30
+    expr                           shift and go to state 31
+    term                           shift and go to state 33
+    unario                         shift and go to state 34
+    factor                         shift and go to state 36
+
+state 54
+
+    (12) while_statement -> WHILE LPAREN . sent_assign RPAREN OBRACKET statement_list CBRACKET
+    (27) sent_assign -> . ID EQUAL exp_bool SEMICOLON
+    (28) sent_assign -> . exp_bool SEMICOLON
+    (29) exp_bool -> . exp_bool OR comb
+    (30) exp_bool -> . comb
+    (31) comb -> . comb AND igualdad
+    (32) comb -> . igualdad
+    (33) igualdad -> . igualdad EQUALEQUAL rel
+    (34) igualdad -> . igualdad DIFFEQUAL rel
+    (35) igualdad -> . rel
+    (36) rel -> . expr op_rel expr
+    (37) rel -> . expr
+    (42) expr -> . expr MINUS term
+    (43) expr -> . expr PLUS term
+    (44) expr -> . term
+    (45) term -> . term TIMES unario
+    (46) term -> . term DIVIDE unario
+    (47) term -> . unario
+    (48) unario -> . NOT unario
+    (49) unario -> . MINUS unario
+    (50) unario -> . factor
+    (51) factor -> . LPAREN RPAREN
+    (52) factor -> . ID
+    (53) factor -> . NUMBER
+    (54) factor -> . DOUBLE
+    (55) factor -> . TRUE
+    (56) factor -> . FALSE
+
+    ID              shift and go to state 78
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 32
+    LPAREN          shift and go to state 17
+    NUMBER          shift and go to state 37
+    DOUBLE          shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    sent_assign                    shift and go to state 81
+    exp_bool                       shift and go to state 13
+    comb                           shift and go to state 21
+    igualdad                       shift and go to state 29
+    rel                            shift and go to state 30
+    expr                           shift and go to state 31
+    term                           shift and go to state 33
+    unario                         shift and go to state 34
+    factor                         shift and go to state 36
+
+state 55
+
+    (10) do_while_statement -> DO OBRACKET . statement_list CBRACKET UNTIL LPAREN sent_assign RPAREN
+    (3) statement_list -> . statement
+    (4) statement_list -> . statement_list statement
+    (5) statement -> . sent_assign
+    (6) statement -> . write_statement
+    (7) statement -> . var_declaration_statement
+    (8) statement -> . if_statement
+    (9) statement -> . iteration_statement
+    (27) sent_assign -> . ID EQUAL exp_bool SEMICOLON
+    (28) sent_assign -> . exp_bool SEMICOLON
+    (26) write_statement -> . WRITE ID SEMICOLON
+    (18) var_declaration_statement -> . type_declaration ID COMA var_declaration_statement
+    (19) var_declaration_statement -> . ID COMA var_declaration_statement
+    (20) var_declaration_statement -> . ID SEMICOLON
+    (21) var_declaration_statement -> . type_declaration ID SEMICOLON
+    (16) if_statement -> . IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET FI
+    (17) if_statement -> . IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI
+    (13) iteration_statement -> . for_statement
+    (14) iteration_statement -> . while_statement
+    (15) iteration_statement -> . do_while_statement
+    (29) exp_bool -> . exp_bool OR comb
+    (30) exp_bool -> . comb
+    (22) type_declaration -> . INT
+    (23) type_declaration -> . CHAR
+    (24) type_declaration -> . FLOAT
+    (25) type_declaration -> . BOOL
+    (11) for_statement -> . FOR LPAREN sent_assign sent_assign RPAREN OBRACKET statement_list CBRACKET
+    (12) while_statement -> . WHILE LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET
+    (10) do_while_statement -> . DO OBRACKET statement_list CBRACKET UNTIL LPAREN sent_assign RPAREN
+    (31) comb -> . comb AND igualdad
+    (32) comb -> . igualdad
+    (33) igualdad -> . igualdad EQUALEQUAL rel
+    (34) igualdad -> . igualdad DIFFEQUAL rel
+    (35) igualdad -> . rel
+    (36) rel -> . expr op_rel expr
+    (37) rel -> . expr
+    (42) expr -> . expr MINUS term
+    (43) expr -> . expr PLUS term
+    (44) expr -> . term
+    (45) term -> . term TIMES unario
+    (46) term -> . term DIVIDE unario
+    (47) term -> . unario
+    (48) unario -> . NOT unario
+    (49) unario -> . MINUS unario
+    (50) unario -> . factor
+    (51) factor -> . LPAREN RPAREN
+    (52) factor -> . ID
+    (53) factor -> . NUMBER
+    (54) factor -> . DOUBLE
+    (55) factor -> . TRUE
+    (56) factor -> . FALSE
+
+    ID              shift and go to state 12
+    WRITE           shift and go to state 14
+    IF              shift and go to state 16
+    INT             shift and go to state 22
+    CHAR            shift and go to state 23
+    FLOAT           shift and go to state 24
+    BOOL            shift and go to state 25
+    FOR             shift and go to state 26
+    WHILE           shift and go to state 27
+    DO              shift and go to state 28
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 32
+    LPAREN          shift and go to state 17
+    NUMBER          shift and go to state 37
+    DOUBLE          shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    statement_list                 shift and go to state 82
+    sent_assign                    shift and go to state 7
+    statement                      shift and go to state 6
+    write_statement                shift and go to state 8
+    var_declaration_statement      shift and go to state 9
+    if_statement                   shift and go to state 10
+    iteration_statement            shift and go to state 11
+    exp_bool                       shift and go to state 13
+    type_declaration               shift and go to state 15
+    for_statement                  shift and go to state 18
+    while_statement                shift and go to state 19
+    do_while_statement             shift and go to state 20
+    comb                           shift and go to state 21
+    igualdad                       shift and go to state 29
+    rel                            shift and go to state 30
+    expr                           shift and go to state 31
+    term                           shift and go to state 33
+    unario                         shift and go to state 34
+    factor                         shift and go to state 36
+
+state 56
+
+    (33) igualdad -> igualdad EQUALEQUAL . rel
+    (36) rel -> . expr op_rel expr
+    (37) rel -> . expr
+    (42) expr -> . expr MINUS term
+    (43) expr -> . expr PLUS term
+    (44) expr -> . term
+    (45) term -> . term TIMES unario
+    (46) term -> . term DIVIDE unario
+    (47) term -> . unario
+    (48) unario -> . NOT unario
+    (49) unario -> . MINUS unario
+    (50) unario -> . factor
+    (51) factor -> . LPAREN RPAREN
+    (52) factor -> . ID
+    (53) factor -> . NUMBER
+    (54) factor -> . DOUBLE
+    (55) factor -> . TRUE
+    (56) factor -> . FALSE
+
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 32
+    LPAREN          shift and go to state 17
+    ID              shift and go to state 66
+    NUMBER          shift and go to state 37
+    DOUBLE          shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    rel                            shift and go to state 83
+    expr                           shift and go to state 31
+    term                           shift and go to state 33
+    unario                         shift and go to state 34
+    factor                         shift and go to state 36
+
+state 57
+
+    (34) igualdad -> igualdad DIFFEQUAL . rel
+    (36) rel -> . expr op_rel expr
+    (37) rel -> . expr
+    (42) expr -> . expr MINUS term
+    (43) expr -> . expr PLUS term
+    (44) expr -> . term
+    (45) term -> . term TIMES unario
+    (46) term -> . term DIVIDE unario
+    (47) term -> . unario
+    (48) unario -> . NOT unario
+    (49) unario -> . MINUS unario
+    (50) unario -> . factor
+    (51) factor -> . LPAREN RPAREN
+    (52) factor -> . ID
+    (53) factor -> . NUMBER
+    (54) factor -> . DOUBLE
+    (55) factor -> . TRUE
+    (56) factor -> . FALSE
+
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 32
+    LPAREN          shift and go to state 17
+    ID              shift and go to state 66
+    NUMBER          shift and go to state 37
+    DOUBLE          shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    rel                            shift and go to state 84
+    expr                           shift and go to state 31
+    term                           shift and go to state 33
+    unario                         shift and go to state 34
+    factor                         shift and go to state 36
+
+state 58
+
+    (36) rel -> expr op_rel . expr
+    (42) expr -> . expr MINUS term
+    (43) expr -> . expr PLUS term
+    (44) expr -> . term
+    (45) term -> . term TIMES unario
+    (46) term -> . term DIVIDE unario
+    (47) term -> . unario
+    (48) unario -> . NOT unario
+    (49) unario -> . MINUS unario
+    (50) unario -> . factor
+    (51) factor -> . LPAREN RPAREN
+    (52) factor -> . ID
+    (53) factor -> . NUMBER
+    (54) factor -> . DOUBLE
+    (55) factor -> . TRUE
+    (56) factor -> . FALSE
+
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 32
+    LPAREN          shift and go to state 17
+    ID              shift and go to state 66
+    NUMBER          shift and go to state 37
+    DOUBLE          shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    expr                           shift and go to state 85
+    term                           shift and go to state 33
+    unario                         shift and go to state 34
+    factor                         shift and go to state 36
+
+state 59
+
+    (42) expr -> expr MINUS . term
+    (45) term -> . term TIMES unario
+    (46) term -> . term DIVIDE unario
+    (47) term -> . unario
+    (48) unario -> . NOT unario
+    (49) unario -> . MINUS unario
+    (50) unario -> . factor
+    (51) factor -> . LPAREN RPAREN
+    (52) factor -> . ID
+    (53) factor -> . NUMBER
+    (54) factor -> . DOUBLE
+    (55) factor -> . TRUE
+    (56) factor -> . FALSE
+
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 32
+    LPAREN          shift and go to state 17
+    ID              shift and go to state 66
+    NUMBER          shift and go to state 37
+    DOUBLE          shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    term                           shift and go to state 86
+    unario                         shift and go to state 34
+    factor                         shift and go to state 36
+
+state 60
+
+    (43) expr -> expr PLUS . term
+    (45) term -> . term TIMES unario
+    (46) term -> . term DIVIDE unario
+    (47) term -> . unario
+    (48) unario -> . NOT unario
+    (49) unario -> . MINUS unario
+    (50) unario -> . factor
+    (51) factor -> . LPAREN RPAREN
+    (52) factor -> . ID
+    (53) factor -> . NUMBER
+    (54) factor -> . DOUBLE
+    (55) factor -> . TRUE
+    (56) factor -> . FALSE
+
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 32
+    LPAREN          shift and go to state 17
+    ID              shift and go to state 66
+    NUMBER          shift and go to state 37
+    DOUBLE          shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    term                           shift and go to state 87
+    unario                         shift and go to state 34
+    factor                         shift and go to state 36
+
+state 61
+
+    (38) op_rel -> LEESTHAN .
+
+    NOT             reduce using rule 38 (op_rel -> LEESTHAN .)
+    MINUS           reduce using rule 38 (op_rel -> LEESTHAN .)
+    LPAREN          reduce using rule 38 (op_rel -> LEESTHAN .)
+    ID              reduce using rule 38 (op_rel -> LEESTHAN .)
+    NUMBER          reduce using rule 38 (op_rel -> LEESTHAN .)
+    DOUBLE          reduce using rule 38 (op_rel -> LEESTHAN .)
+    TRUE            reduce using rule 38 (op_rel -> LEESTHAN .)
+    FALSE           reduce using rule 38 (op_rel -> LEESTHAN .)
+
+
+state 62
+
+    (39) op_rel -> MORETHAN .
+
+    NOT             reduce using rule 39 (op_rel -> MORETHAN .)
+    MINUS           reduce using rule 39 (op_rel -> MORETHAN .)
+    LPAREN          reduce using rule 39 (op_rel -> MORETHAN .)
+    ID              reduce using rule 39 (op_rel -> MORETHAN .)
+    NUMBER          reduce using rule 39 (op_rel -> MORETHAN .)
+    DOUBLE          reduce using rule 39 (op_rel -> MORETHAN .)
+    TRUE            reduce using rule 39 (op_rel -> MORETHAN .)
+    FALSE           reduce using rule 39 (op_rel -> MORETHAN .)
+
+
+state 63
+
+    (40) op_rel -> LEESETHAN .
+
+    NOT             reduce using rule 40 (op_rel -> LEESETHAN .)
+    MINUS           reduce using rule 40 (op_rel -> LEESETHAN .)
+    LPAREN          reduce using rule 40 (op_rel -> LEESETHAN .)
+    ID              reduce using rule 40 (op_rel -> LEESETHAN .)
+    NUMBER          reduce using rule 40 (op_rel -> LEESETHAN .)
+    DOUBLE          reduce using rule 40 (op_rel -> LEESETHAN .)
+    TRUE            reduce using rule 40 (op_rel -> LEESETHAN .)
+    FALSE           reduce using rule 40 (op_rel -> LEESETHAN .)
+
+
+state 64
+
+    (41) op_rel -> MOREETHAN .
+
+    NOT             reduce using rule 41 (op_rel -> MOREETHAN .)
+    MINUS           reduce using rule 41 (op_rel -> MOREETHAN .)
+    LPAREN          reduce using rule 41 (op_rel -> MOREETHAN .)
+    ID              reduce using rule 41 (op_rel -> MOREETHAN .)
+    NUMBER          reduce using rule 41 (op_rel -> MOREETHAN .)
+    DOUBLE          reduce using rule 41 (op_rel -> MOREETHAN .)
+    TRUE            reduce using rule 41 (op_rel -> MOREETHAN .)
+    FALSE           reduce using rule 41 (op_rel -> MOREETHAN .)
+
+
+state 65
+
+    (49) unario -> MINUS unario .
+
+    TIMES           reduce using rule 49 (unario -> MINUS unario .)
+    DIVIDE          reduce using rule 49 (unario -> MINUS unario .)
+    MINUS           reduce using rule 49 (unario -> MINUS unario .)
+    PLUS            reduce using rule 49 (unario -> MINUS unario .)
+    LEESTHAN        reduce using rule 49 (unario -> MINUS unario .)
+    MORETHAN        reduce using rule 49 (unario -> MINUS unario .)
+    LEESETHAN       reduce using rule 49 (unario -> MINUS unario .)
+    MOREETHAN       reduce using rule 49 (unario -> MINUS unario .)
+    EQUALEQUAL      reduce using rule 49 (unario -> MINUS unario .)
+    DIFFEQUAL       reduce using rule 49 (unario -> MINUS unario .)
+    AND             reduce using rule 49 (unario -> MINUS unario .)
+    SEMICOLON       reduce using rule 49 (unario -> MINUS unario .)
+    OR              reduce using rule 49 (unario -> MINUS unario .)
+
+
+state 66
+
+    (52) factor -> ID .
+
+    TIMES           reduce using rule 52 (factor -> ID .)
+    DIVIDE          reduce using rule 52 (factor -> ID .)
+    MINUS           reduce using rule 52 (factor -> ID .)
+    PLUS            reduce using rule 52 (factor -> ID .)
+    LEESTHAN        reduce using rule 52 (factor -> ID .)
+    MORETHAN        reduce using rule 52 (factor -> ID .)
+    LEESETHAN       reduce using rule 52 (factor -> ID .)
+    MOREETHAN       reduce using rule 52 (factor -> ID .)
+    EQUALEQUAL      reduce using rule 52 (factor -> ID .)
+    DIFFEQUAL       reduce using rule 52 (factor -> ID .)
+    AND             reduce using rule 52 (factor -> ID .)
+    SEMICOLON       reduce using rule 52 (factor -> ID .)
+    OR              reduce using rule 52 (factor -> ID .)
+
+
+state 67
+
+    (45) term -> term TIMES . unario
+    (48) unario -> . NOT unario
+    (49) unario -> . MINUS unario
+    (50) unario -> . factor
+    (51) factor -> . LPAREN RPAREN
+    (52) factor -> . ID
+    (53) factor -> . NUMBER
+    (54) factor -> . DOUBLE
+    (55) factor -> . TRUE
+    (56) factor -> . FALSE
+
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 32
+    LPAREN          shift and go to state 17
+    ID              shift and go to state 66
+    NUMBER          shift and go to state 37
+    DOUBLE          shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    unario                         shift and go to state 88
+    factor                         shift and go to state 36
+
+state 68
+
+    (46) term -> term DIVIDE . unario
+    (48) unario -> . NOT unario
+    (49) unario -> . MINUS unario
+    (50) unario -> . factor
+    (51) factor -> . LPAREN RPAREN
+    (52) factor -> . ID
+    (53) factor -> . NUMBER
+    (54) factor -> . DOUBLE
+    (55) factor -> . TRUE
+    (56) factor -> . FALSE
+
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 32
+    LPAREN          shift and go to state 17
+    ID              shift and go to state 66
+    NUMBER          shift and go to state 37
+    DOUBLE          shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    unario                         shift and go to state 89
+    factor                         shift and go to state 36
+
+state 69
+
+    (48) unario -> NOT unario .
+
+    TIMES           reduce using rule 48 (unario -> NOT unario .)
+    DIVIDE          reduce using rule 48 (unario -> NOT unario .)
+    MINUS           reduce using rule 48 (unario -> NOT unario .)
+    PLUS            reduce using rule 48 (unario -> NOT unario .)
+    LEESTHAN        reduce using rule 48 (unario -> NOT unario .)
+    MORETHAN        reduce using rule 48 (unario -> NOT unario .)
+    LEESETHAN       reduce using rule 48 (unario -> NOT unario .)
+    MOREETHAN       reduce using rule 48 (unario -> NOT unario .)
+    EQUALEQUAL      reduce using rule 48 (unario -> NOT unario .)
+    DIFFEQUAL       reduce using rule 48 (unario -> NOT unario .)
+    AND             reduce using rule 48 (unario -> NOT unario .)
+    SEMICOLON       reduce using rule 48 (unario -> NOT unario .)
+    OR              reduce using rule 48 (unario -> NOT unario .)
+
+
+state 70
+
+    (27) sent_assign -> ID EQUAL exp_bool . SEMICOLON
+    (29) exp_bool -> exp_bool . OR comb
+
+    SEMICOLON       shift and go to state 90
+    OR              shift and go to state 47
+
+
+state 71
+
+    (19) var_declaration_statement -> ID . COMA var_declaration_statement
+    (20) var_declaration_statement -> ID . SEMICOLON
+
+    COMA            shift and go to state 45
+    SEMICOLON       shift and go to state 44
+
+
+state 72
+
+    (19) var_declaration_statement -> ID COMA var_declaration_statement .
+
+    CBRACKET        reduce using rule 19 (var_declaration_statement -> ID COMA var_declaration_statement .)
+    ID              reduce using rule 19 (var_declaration_statement -> ID COMA var_declaration_statement .)
+    WRITE           reduce using rule 19 (var_declaration_statement -> ID COMA var_declaration_statement .)
+    IF              reduce using rule 19 (var_declaration_statement -> ID COMA var_declaration_statement .)
+    INT             reduce using rule 19 (var_declaration_statement -> ID COMA var_declaration_statement .)
+    CHAR            reduce using rule 19 (var_declaration_statement -> ID COMA var_declaration_statement .)
+    FLOAT           reduce using rule 19 (var_declaration_statement -> ID COMA var_declaration_statement .)
+    BOOL            reduce using rule 19 (var_declaration_statement -> ID COMA var_declaration_statement .)
+    FOR             reduce using rule 19 (var_declaration_statement -> ID COMA var_declaration_statement .)
+    WHILE           reduce using rule 19 (var_declaration_statement -> ID COMA var_declaration_statement .)
+    DO              reduce using rule 19 (var_declaration_statement -> ID COMA var_declaration_statement .)
+    NOT             reduce using rule 19 (var_declaration_statement -> ID COMA var_declaration_statement .)
+    MINUS           reduce using rule 19 (var_declaration_statement -> ID COMA var_declaration_statement .)
+    LPAREN          reduce using rule 19 (var_declaration_statement -> ID COMA var_declaration_statement .)
+    NUMBER          reduce using rule 19 (var_declaration_statement -> ID COMA var_declaration_statement .)
+    DOUBLE          reduce using rule 19 (var_declaration_statement -> ID COMA var_declaration_statement .)
+    TRUE            reduce using rule 19 (var_declaration_statement -> ID COMA var_declaration_statement .)
+    FALSE           reduce using rule 19 (var_declaration_statement -> ID COMA var_declaration_statement .)
+
+
+state 73
+
+    (29) exp_bool -> exp_bool OR comb .
+    (31) comb -> comb . AND igualdad
+
+    SEMICOLON       reduce using rule 29 (exp_bool -> exp_bool OR comb .)
+    OR              reduce using rule 29 (exp_bool -> exp_bool OR comb .)
+    AND             shift and go to state 52
+
+
+state 74
+
+    (26) write_statement -> WRITE ID SEMICOLON .
+
+    CBRACKET        reduce using rule 26 (write_statement -> WRITE ID SEMICOLON .)
+    ID              reduce using rule 26 (write_statement -> WRITE ID SEMICOLON .)
+    WRITE           reduce using rule 26 (write_statement -> WRITE ID SEMICOLON .)
+    IF              reduce using rule 26 (write_statement -> WRITE ID SEMICOLON .)
+    INT             reduce using rule 26 (write_statement -> WRITE ID SEMICOLON .)
+    CHAR            reduce using rule 26 (write_statement -> WRITE ID SEMICOLON .)
+    FLOAT           reduce using rule 26 (write_statement -> WRITE ID SEMICOLON .)
+    BOOL            reduce using rule 26 (write_statement -> WRITE ID SEMICOLON .)
+    FOR             reduce using rule 26 (write_statement -> WRITE ID SEMICOLON .)
+    WHILE           reduce using rule 26 (write_statement -> WRITE ID SEMICOLON .)
+    DO              reduce using rule 26 (write_statement -> WRITE ID SEMICOLON .)
+    NOT             reduce using rule 26 (write_statement -> WRITE ID SEMICOLON .)
+    MINUS           reduce using rule 26 (write_statement -> WRITE ID SEMICOLON .)
+    LPAREN          reduce using rule 26 (write_statement -> WRITE ID SEMICOLON .)
+    NUMBER          reduce using rule 26 (write_statement -> WRITE ID SEMICOLON .)
+    DOUBLE          reduce using rule 26 (write_statement -> WRITE ID SEMICOLON .)
+    TRUE            reduce using rule 26 (write_statement -> WRITE ID SEMICOLON .)
+    FALSE           reduce using rule 26 (write_statement -> WRITE ID SEMICOLON .)
+
+
+state 75
+
+    (18) var_declaration_statement -> type_declaration ID COMA . var_declaration_statement
+    (18) var_declaration_statement -> . type_declaration ID COMA var_declaration_statement
+    (19) var_declaration_statement -> . ID COMA var_declaration_statement
+    (20) var_declaration_statement -> . ID SEMICOLON
+    (21) var_declaration_statement -> . type_declaration ID SEMICOLON
+    (22) type_declaration -> . INT
+    (23) type_declaration -> . CHAR
+    (24) type_declaration -> . FLOAT
+    (25) type_declaration -> . BOOL
+
+    ID              shift and go to state 71
+    INT             shift and go to state 22
+    CHAR            shift and go to state 23
+    FLOAT           shift and go to state 24
+    BOOL            shift and go to state 25
+
+    type_declaration               shift and go to state 15
+    var_declaration_statement      shift and go to state 91
+
+state 76
+
+    (21) var_declaration_statement -> type_declaration ID SEMICOLON .
+
+    CBRACKET        reduce using rule 21 (var_declaration_statement -> type_declaration ID SEMICOLON .)
+    ID              reduce using rule 21 (var_declaration_statement -> type_declaration ID SEMICOLON .)
+    WRITE           reduce using rule 21 (var_declaration_statement -> type_declaration ID SEMICOLON .)
+    IF              reduce using rule 21 (var_declaration_statement -> type_declaration ID SEMICOLON .)
+    INT             reduce using rule 21 (var_declaration_statement -> type_declaration ID SEMICOLON .)
+    CHAR            reduce using rule 21 (var_declaration_statement -> type_declaration ID SEMICOLON .)
+    FLOAT           reduce using rule 21 (var_declaration_statement -> type_declaration ID SEMICOLON .)
+    BOOL            reduce using rule 21 (var_declaration_statement -> type_declaration ID SEMICOLON .)
+    FOR             reduce using rule 21 (var_declaration_statement -> type_declaration ID SEMICOLON .)
+    WHILE           reduce using rule 21 (var_declaration_statement -> type_declaration ID SEMICOLON .)
+    DO              reduce using rule 21 (var_declaration_statement -> type_declaration ID SEMICOLON .)
+    NOT             reduce using rule 21 (var_declaration_statement -> type_declaration ID SEMICOLON .)
+    MINUS           reduce using rule 21 (var_declaration_statement -> type_declaration ID SEMICOLON .)
+    LPAREN          reduce using rule 21 (var_declaration_statement -> type_declaration ID SEMICOLON .)
+    NUMBER          reduce using rule 21 (var_declaration_statement -> type_declaration ID SEMICOLON .)
+    DOUBLE          reduce using rule 21 (var_declaration_statement -> type_declaration ID SEMICOLON .)
+    TRUE            reduce using rule 21 (var_declaration_statement -> type_declaration ID SEMICOLON .)
+    FALSE           reduce using rule 21 (var_declaration_statement -> type_declaration ID SEMICOLON .)
+
+
+state 77
+
+    (16) if_statement -> IF LPAREN sent_assign . RPAREN OBRACKET statement_list CBRACKET FI
+    (17) if_statement -> IF LPAREN sent_assign . RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI
+
+    RPAREN          shift and go to state 92
+
+
+state 78
+
+    (27) sent_assign -> ID . EQUAL exp_bool SEMICOLON
+    (52) factor -> ID .
+
+    EQUAL           shift and go to state 43
+    TIMES           reduce using rule 52 (factor -> ID .)
+    DIVIDE          reduce using rule 52 (factor -> ID .)
+    MINUS           reduce using rule 52 (factor -> ID .)
+    PLUS            reduce using rule 52 (factor -> ID .)
+    LEESTHAN        reduce using rule 52 (factor -> ID .)
+    MORETHAN        reduce using rule 52 (factor -> ID .)
+    LEESETHAN       reduce using rule 52 (factor -> ID .)
+    MOREETHAN       reduce using rule 52 (factor -> ID .)
+    EQUALEQUAL      reduce using rule 52 (factor -> ID .)
+    DIFFEQUAL       reduce using rule 52 (factor -> ID .)
+    AND             reduce using rule 52 (factor -> ID .)
+    SEMICOLON       reduce using rule 52 (factor -> ID .)
+    OR              reduce using rule 52 (factor -> ID .)
+
+
+state 79
+
+    (31) comb -> comb AND igualdad .
+    (33) igualdad -> igualdad . EQUALEQUAL rel
+    (34) igualdad -> igualdad . DIFFEQUAL rel
+
+    AND             reduce using rule 31 (comb -> comb AND igualdad .)
+    SEMICOLON       reduce using rule 31 (comb -> comb AND igualdad .)
+    OR              reduce using rule 31 (comb -> comb AND igualdad .)
+    EQUALEQUAL      shift and go to state 56
+    DIFFEQUAL       shift and go to state 57
+
+
+state 80
+
+    (11) for_statement -> FOR LPAREN sent_assign . sent_assign RPAREN OBRACKET statement_list CBRACKET
+    (27) sent_assign -> . ID EQUAL exp_bool SEMICOLON
+    (28) sent_assign -> . exp_bool SEMICOLON
+    (29) exp_bool -> . exp_bool OR comb
+    (30) exp_bool -> . comb
+    (31) comb -> . comb AND igualdad
+    (32) comb -> . igualdad
+    (33) igualdad -> . igualdad EQUALEQUAL rel
+    (34) igualdad -> . igualdad DIFFEQUAL rel
+    (35) igualdad -> . rel
+    (36) rel -> . expr op_rel expr
+    (37) rel -> . expr
+    (42) expr -> . expr MINUS term
+    (43) expr -> . expr PLUS term
+    (44) expr -> . term
+    (45) term -> . term TIMES unario
+    (46) term -> . term DIVIDE unario
+    (47) term -> . unario
+    (48) unario -> . NOT unario
+    (49) unario -> . MINUS unario
+    (50) unario -> . factor
+    (51) factor -> . LPAREN RPAREN
+    (52) factor -> . ID
+    (53) factor -> . NUMBER
+    (54) factor -> . DOUBLE
+    (55) factor -> . TRUE
+    (56) factor -> . FALSE
+
+    ID              shift and go to state 78
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 32
+    LPAREN          shift and go to state 17
+    NUMBER          shift and go to state 37
+    DOUBLE          shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    sent_assign                    shift and go to state 93
+    exp_bool                       shift and go to state 13
+    comb                           shift and go to state 21
+    igualdad                       shift and go to state 29
+    rel                            shift and go to state 30
+    expr                           shift and go to state 31
+    term                           shift and go to state 33
+    unario                         shift and go to state 34
+    factor                         shift and go to state 36
+
+state 81
+
+    (12) while_statement -> WHILE LPAREN sent_assign . RPAREN OBRACKET statement_list CBRACKET
+
+    RPAREN          shift and go to state 94
+
+
+state 82
+
+    (10) do_while_statement -> DO OBRACKET statement_list . CBRACKET UNTIL LPAREN sent_assign RPAREN
+    (4) statement_list -> statement_list . statement
+    (5) statement -> . sent_assign
+    (6) statement -> . write_statement
+    (7) statement -> . var_declaration_statement
+    (8) statement -> . if_statement
+    (9) statement -> . iteration_statement
+    (27) sent_assign -> . ID EQUAL exp_bool SEMICOLON
+    (28) sent_assign -> . exp_bool SEMICOLON
+    (26) write_statement -> . WRITE ID SEMICOLON
+    (18) var_declaration_statement -> . type_declaration ID COMA var_declaration_statement
+    (19) var_declaration_statement -> . ID COMA var_declaration_statement
+    (20) var_declaration_statement -> . ID SEMICOLON
+    (21) var_declaration_statement -> . type_declaration ID SEMICOLON
+    (16) if_statement -> . IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET FI
+    (17) if_statement -> . IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI
+    (13) iteration_statement -> . for_statement
+    (14) iteration_statement -> . while_statement
+    (15) iteration_statement -> . do_while_statement
+    (29) exp_bool -> . exp_bool OR comb
+    (30) exp_bool -> . comb
+    (22) type_declaration -> . INT
+    (23) type_declaration -> . CHAR
+    (24) type_declaration -> . FLOAT
+    (25) type_declaration -> . BOOL
+    (11) for_statement -> . FOR LPAREN sent_assign sent_assign RPAREN OBRACKET statement_list CBRACKET
+    (12) while_statement -> . WHILE LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET
+    (10) do_while_statement -> . DO OBRACKET statement_list CBRACKET UNTIL LPAREN sent_assign RPAREN
+    (31) comb -> . comb AND igualdad
+    (32) comb -> . igualdad
+    (33) igualdad -> . igualdad EQUALEQUAL rel
+    (34) igualdad -> . igualdad DIFFEQUAL rel
+    (35) igualdad -> . rel
+    (36) rel -> . expr op_rel expr
+    (37) rel -> . expr
+    (42) expr -> . expr MINUS term
+    (43) expr -> . expr PLUS term
+    (44) expr -> . term
+    (45) term -> . term TIMES unario
+    (46) term -> . term DIVIDE unario
+    (47) term -> . unario
+    (48) unario -> . NOT unario
+    (49) unario -> . MINUS unario
+    (50) unario -> . factor
+    (51) factor -> . LPAREN RPAREN
+    (52) factor -> . ID
+    (53) factor -> . NUMBER
+    (54) factor -> . DOUBLE
+    (55) factor -> . TRUE
+    (56) factor -> . FALSE
+
+    CBRACKET        shift and go to state 95
+    ID              shift and go to state 12
+    WRITE           shift and go to state 14
+    IF              shift and go to state 16
+    INT             shift and go to state 22
+    CHAR            shift and go to state 23
+    FLOAT           shift and go to state 24
+    BOOL            shift and go to state 25
+    FOR             shift and go to state 26
+    WHILE           shift and go to state 27
+    DO              shift and go to state 28
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 32
+    LPAREN          shift and go to state 17
+    NUMBER          shift and go to state 37
+    DOUBLE          shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    sent_assign                    shift and go to state 7
+    statement                      shift and go to state 42
+    write_statement                shift and go to state 8
+    var_declaration_statement      shift and go to state 9
+    if_statement                   shift and go to state 10
+    iteration_statement            shift and go to state 11
+    exp_bool                       shift and go to state 13
+    type_declaration               shift and go to state 15
+    for_statement                  shift and go to state 18
+    while_statement                shift and go to state 19
+    do_while_statement             shift and go to state 20
+    comb                           shift and go to state 21
+    igualdad                       shift and go to state 29
+    rel                            shift and go to state 30
+    expr                           shift and go to state 31
+    term                           shift and go to state 33
+    unario                         shift and go to state 34
+    factor                         shift and go to state 36
+
+state 83
+
+    (33) igualdad -> igualdad EQUALEQUAL rel .
+
+    EQUALEQUAL      reduce using rule 33 (igualdad -> igualdad EQUALEQUAL rel .)
+    DIFFEQUAL       reduce using rule 33 (igualdad -> igualdad EQUALEQUAL rel .)
+    AND             reduce using rule 33 (igualdad -> igualdad EQUALEQUAL rel .)
+    SEMICOLON       reduce using rule 33 (igualdad -> igualdad EQUALEQUAL rel .)
+    OR              reduce using rule 33 (igualdad -> igualdad EQUALEQUAL rel .)
+
+
+state 84
+
+    (34) igualdad -> igualdad DIFFEQUAL rel .
+
+    EQUALEQUAL      reduce using rule 34 (igualdad -> igualdad DIFFEQUAL rel .)
+    DIFFEQUAL       reduce using rule 34 (igualdad -> igualdad DIFFEQUAL rel .)
+    AND             reduce using rule 34 (igualdad -> igualdad DIFFEQUAL rel .)
+    SEMICOLON       reduce using rule 34 (igualdad -> igualdad DIFFEQUAL rel .)
+    OR              reduce using rule 34 (igualdad -> igualdad DIFFEQUAL rel .)
+
+
+state 85
+
+    (36) rel -> expr op_rel expr .
+    (42) expr -> expr . MINUS term
+    (43) expr -> expr . PLUS term
+
+    EQUALEQUAL      reduce using rule 36 (rel -> expr op_rel expr .)
+    DIFFEQUAL       reduce using rule 36 (rel -> expr op_rel expr .)
+    AND             reduce using rule 36 (rel -> expr op_rel expr .)
+    SEMICOLON       reduce using rule 36 (rel -> expr op_rel expr .)
+    OR              reduce using rule 36 (rel -> expr op_rel expr .)
+    MINUS           shift and go to state 59
+    PLUS            shift and go to state 60
+
+
+state 86
+
+    (42) expr -> expr MINUS term .
+    (45) term -> term . TIMES unario
+    (46) term -> term . DIVIDE unario
+
+    MINUS           reduce using rule 42 (expr -> expr MINUS term .)
+    PLUS            reduce using rule 42 (expr -> expr MINUS term .)
+    LEESTHAN        reduce using rule 42 (expr -> expr MINUS term .)
+    MORETHAN        reduce using rule 42 (expr -> expr MINUS term .)
+    LEESETHAN       reduce using rule 42 (expr -> expr MINUS term .)
+    MOREETHAN       reduce using rule 42 (expr -> expr MINUS term .)
+    EQUALEQUAL      reduce using rule 42 (expr -> expr MINUS term .)
+    DIFFEQUAL       reduce using rule 42 (expr -> expr MINUS term .)
+    AND             reduce using rule 42 (expr -> expr MINUS term .)
+    SEMICOLON       reduce using rule 42 (expr -> expr MINUS term .)
+    OR              reduce using rule 42 (expr -> expr MINUS term .)
+    TIMES           shift and go to state 67
+    DIVIDE          shift and go to state 68
+
+
+state 87
+
+    (43) expr -> expr PLUS term .
+    (45) term -> term . TIMES unario
+    (46) term -> term . DIVIDE unario
+
+    MINUS           reduce using rule 43 (expr -> expr PLUS term .)
+    PLUS            reduce using rule 43 (expr -> expr PLUS term .)
+    LEESTHAN        reduce using rule 43 (expr -> expr PLUS term .)
+    MORETHAN        reduce using rule 43 (expr -> expr PLUS term .)
+    LEESETHAN       reduce using rule 43 (expr -> expr PLUS term .)
+    MOREETHAN       reduce using rule 43 (expr -> expr PLUS term .)
+    EQUALEQUAL      reduce using rule 43 (expr -> expr PLUS term .)
+    DIFFEQUAL       reduce using rule 43 (expr -> expr PLUS term .)
+    AND             reduce using rule 43 (expr -> expr PLUS term .)
+    SEMICOLON       reduce using rule 43 (expr -> expr PLUS term .)
+    OR              reduce using rule 43 (expr -> expr PLUS term .)
+    TIMES           shift and go to state 67
+    DIVIDE          shift and go to state 68
+
+
+state 88
+
+    (45) term -> term TIMES unario .
+
+    TIMES           reduce using rule 45 (term -> term TIMES unario .)
+    DIVIDE          reduce using rule 45 (term -> term TIMES unario .)
+    MINUS           reduce using rule 45 (term -> term TIMES unario .)
+    PLUS            reduce using rule 45 (term -> term TIMES unario .)
+    LEESTHAN        reduce using rule 45 (term -> term TIMES unario .)
+    MORETHAN        reduce using rule 45 (term -> term TIMES unario .)
+    LEESETHAN       reduce using rule 45 (term -> term TIMES unario .)
+    MOREETHAN       reduce using rule 45 (term -> term TIMES unario .)
+    EQUALEQUAL      reduce using rule 45 (term -> term TIMES unario .)
+    DIFFEQUAL       reduce using rule 45 (term -> term TIMES unario .)
+    AND             reduce using rule 45 (term -> term TIMES unario .)
+    SEMICOLON       reduce using rule 45 (term -> term TIMES unario .)
+    OR              reduce using rule 45 (term -> term TIMES unario .)
+
+
+state 89
+
+    (46) term -> term DIVIDE unario .
+
+    TIMES           reduce using rule 46 (term -> term DIVIDE unario .)
+    DIVIDE          reduce using rule 46 (term -> term DIVIDE unario .)
+    MINUS           reduce using rule 46 (term -> term DIVIDE unario .)
+    PLUS            reduce using rule 46 (term -> term DIVIDE unario .)
+    LEESTHAN        reduce using rule 46 (term -> term DIVIDE unario .)
+    MORETHAN        reduce using rule 46 (term -> term DIVIDE unario .)
+    LEESETHAN       reduce using rule 46 (term -> term DIVIDE unario .)
+    MOREETHAN       reduce using rule 46 (term -> term DIVIDE unario .)
+    EQUALEQUAL      reduce using rule 46 (term -> term DIVIDE unario .)
+    DIFFEQUAL       reduce using rule 46 (term -> term DIVIDE unario .)
+    AND             reduce using rule 46 (term -> term DIVIDE unario .)
+    SEMICOLON       reduce using rule 46 (term -> term DIVIDE unario .)
+    OR              reduce using rule 46 (term -> term DIVIDE unario .)
+
+
+state 90
+
+    (27) sent_assign -> ID EQUAL exp_bool SEMICOLON .
+
+    CBRACKET        reduce using rule 27 (sent_assign -> ID EQUAL exp_bool SEMICOLON .)
+    ID              reduce using rule 27 (sent_assign -> ID EQUAL exp_bool SEMICOLON .)
+    WRITE           reduce using rule 27 (sent_assign -> ID EQUAL exp_bool SEMICOLON .)
+    IF              reduce using rule 27 (sent_assign -> ID EQUAL exp_bool SEMICOLON .)
+    INT             reduce using rule 27 (sent_assign -> ID EQUAL exp_bool SEMICOLON .)
+    CHAR            reduce using rule 27 (sent_assign -> ID EQUAL exp_bool SEMICOLON .)
+    FLOAT           reduce using rule 27 (sent_assign -> ID EQUAL exp_bool SEMICOLON .)
+    BOOL            reduce using rule 27 (sent_assign -> ID EQUAL exp_bool SEMICOLON .)
+    FOR             reduce using rule 27 (sent_assign -> ID EQUAL exp_bool SEMICOLON .)
+    WHILE           reduce using rule 27 (sent_assign -> ID EQUAL exp_bool SEMICOLON .)
+    DO              reduce using rule 27 (sent_assign -> ID EQUAL exp_bool SEMICOLON .)
+    NOT             reduce using rule 27 (sent_assign -> ID EQUAL exp_bool SEMICOLON .)
+    MINUS           reduce using rule 27 (sent_assign -> ID EQUAL exp_bool SEMICOLON .)
+    LPAREN          reduce using rule 27 (sent_assign -> ID EQUAL exp_bool SEMICOLON .)
+    NUMBER          reduce using rule 27 (sent_assign -> ID EQUAL exp_bool SEMICOLON .)
+    DOUBLE          reduce using rule 27 (sent_assign -> ID EQUAL exp_bool SEMICOLON .)
+    TRUE            reduce using rule 27 (sent_assign -> ID EQUAL exp_bool SEMICOLON .)
+    FALSE           reduce using rule 27 (sent_assign -> ID EQUAL exp_bool SEMICOLON .)
+    RPAREN          reduce using rule 27 (sent_assign -> ID EQUAL exp_bool SEMICOLON .)
+
+
+state 91
+
+    (18) var_declaration_statement -> type_declaration ID COMA var_declaration_statement .
+
+    CBRACKET        reduce using rule 18 (var_declaration_statement -> type_declaration ID COMA var_declaration_statement .)
+    ID              reduce using rule 18 (var_declaration_statement -> type_declaration ID COMA var_declaration_statement .)
+    WRITE           reduce using rule 18 (var_declaration_statement -> type_declaration ID COMA var_declaration_statement .)
+    IF              reduce using rule 18 (var_declaration_statement -> type_declaration ID COMA var_declaration_statement .)
+    INT             reduce using rule 18 (var_declaration_statement -> type_declaration ID COMA var_declaration_statement .)
+    CHAR            reduce using rule 18 (var_declaration_statement -> type_declaration ID COMA var_declaration_statement .)
+    FLOAT           reduce using rule 18 (var_declaration_statement -> type_declaration ID COMA var_declaration_statement .)
+    BOOL            reduce using rule 18 (var_declaration_statement -> type_declaration ID COMA var_declaration_statement .)
+    FOR             reduce using rule 18 (var_declaration_statement -> type_declaration ID COMA var_declaration_statement .)
+    WHILE           reduce using rule 18 (var_declaration_statement -> type_declaration ID COMA var_declaration_statement .)
+    DO              reduce using rule 18 (var_declaration_statement -> type_declaration ID COMA var_declaration_statement .)
+    NOT             reduce using rule 18 (var_declaration_statement -> type_declaration ID COMA var_declaration_statement .)
+    MINUS           reduce using rule 18 (var_declaration_statement -> type_declaration ID COMA var_declaration_statement .)
+    LPAREN          reduce using rule 18 (var_declaration_statement -> type_declaration ID COMA var_declaration_statement .)
+    NUMBER          reduce using rule 18 (var_declaration_statement -> type_declaration ID COMA var_declaration_statement .)
+    DOUBLE          reduce using rule 18 (var_declaration_statement -> type_declaration ID COMA var_declaration_statement .)
+    TRUE            reduce using rule 18 (var_declaration_statement -> type_declaration ID COMA var_declaration_statement .)
+    FALSE           reduce using rule 18 (var_declaration_statement -> type_declaration ID COMA var_declaration_statement .)
+
+
+state 92
+
+    (16) if_statement -> IF LPAREN sent_assign RPAREN . OBRACKET statement_list CBRACKET FI
+    (17) if_statement -> IF LPAREN sent_assign RPAREN . OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI
+
+    OBRACKET        shift and go to state 96
+
+
+state 93
+
+    (11) for_statement -> FOR LPAREN sent_assign sent_assign . RPAREN OBRACKET statement_list CBRACKET
+
+    RPAREN          shift and go to state 97
+
+
+state 94
+
+    (12) while_statement -> WHILE LPAREN sent_assign RPAREN . OBRACKET statement_list CBRACKET
+
+    OBRACKET        shift and go to state 98
+
+
+state 95
+
+    (10) do_while_statement -> DO OBRACKET statement_list CBRACKET . UNTIL LPAREN sent_assign RPAREN
+
+    UNTIL           shift and go to state 99
+
+
+state 96
+
+    (16) if_statement -> IF LPAREN sent_assign RPAREN OBRACKET . statement_list CBRACKET FI
+    (17) if_statement -> IF LPAREN sent_assign RPAREN OBRACKET . statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI
+    (3) statement_list -> . statement
+    (4) statement_list -> . statement_list statement
+    (5) statement -> . sent_assign
+    (6) statement -> . write_statement
+    (7) statement -> . var_declaration_statement
+    (8) statement -> . if_statement
+    (9) statement -> . iteration_statement
+    (27) sent_assign -> . ID EQUAL exp_bool SEMICOLON
+    (28) sent_assign -> . exp_bool SEMICOLON
+    (26) write_statement -> . WRITE ID SEMICOLON
+    (18) var_declaration_statement -> . type_declaration ID COMA var_declaration_statement
+    (19) var_declaration_statement -> . ID COMA var_declaration_statement
+    (20) var_declaration_statement -> . ID SEMICOLON
+    (21) var_declaration_statement -> . type_declaration ID SEMICOLON
+    (16) if_statement -> . IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET FI
+    (17) if_statement -> . IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI
+    (13) iteration_statement -> . for_statement
+    (14) iteration_statement -> . while_statement
+    (15) iteration_statement -> . do_while_statement
+    (29) exp_bool -> . exp_bool OR comb
+    (30) exp_bool -> . comb
+    (22) type_declaration -> . INT
+    (23) type_declaration -> . CHAR
+    (24) type_declaration -> . FLOAT
+    (25) type_declaration -> . BOOL
+    (11) for_statement -> . FOR LPAREN sent_assign sent_assign RPAREN OBRACKET statement_list CBRACKET
+    (12) while_statement -> . WHILE LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET
+    (10) do_while_statement -> . DO OBRACKET statement_list CBRACKET UNTIL LPAREN sent_assign RPAREN
+    (31) comb -> . comb AND igualdad
+    (32) comb -> . igualdad
+    (33) igualdad -> . igualdad EQUALEQUAL rel
+    (34) igualdad -> . igualdad DIFFEQUAL rel
+    (35) igualdad -> . rel
+    (36) rel -> . expr op_rel expr
+    (37) rel -> . expr
+    (42) expr -> . expr MINUS term
+    (43) expr -> . expr PLUS term
+    (44) expr -> . term
+    (45) term -> . term TIMES unario
+    (46) term -> . term DIVIDE unario
+    (47) term -> . unario
+    (48) unario -> . NOT unario
+    (49) unario -> . MINUS unario
+    (50) unario -> . factor
+    (51) factor -> . LPAREN RPAREN
+    (52) factor -> . ID
+    (53) factor -> . NUMBER
+    (54) factor -> . DOUBLE
+    (55) factor -> . TRUE
+    (56) factor -> . FALSE
+
+    ID              shift and go to state 12
+    WRITE           shift and go to state 14
+    IF              shift and go to state 16
+    INT             shift and go to state 22
+    CHAR            shift and go to state 23
+    FLOAT           shift and go to state 24
+    BOOL            shift and go to state 25
+    FOR             shift and go to state 26
+    WHILE           shift and go to state 27
+    DO              shift and go to state 28
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 32
+    LPAREN          shift and go to state 17
+    NUMBER          shift and go to state 37
+    DOUBLE          shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    sent_assign                    shift and go to state 7
+    statement_list                 shift and go to state 100
+    statement                      shift and go to state 6
+    write_statement                shift and go to state 8
+    var_declaration_statement      shift and go to state 9
+    if_statement                   shift and go to state 10
+    iteration_statement            shift and go to state 11
+    exp_bool                       shift and go to state 13
+    type_declaration               shift and go to state 15
+    for_statement                  shift and go to state 18
+    while_statement                shift and go to state 19
+    do_while_statement             shift and go to state 20
+    comb                           shift and go to state 21
+    igualdad                       shift and go to state 29
+    rel                            shift and go to state 30
+    expr                           shift and go to state 31
+    term                           shift and go to state 33
+    unario                         shift and go to state 34
+    factor                         shift and go to state 36
+
+state 97
+
+    (11) for_statement -> FOR LPAREN sent_assign sent_assign RPAREN . OBRACKET statement_list CBRACKET
+
+    OBRACKET        shift and go to state 101
+
+
+state 98
+
+    (12) while_statement -> WHILE LPAREN sent_assign RPAREN OBRACKET . statement_list CBRACKET
+    (3) statement_list -> . statement
+    (4) statement_list -> . statement_list statement
+    (5) statement -> . sent_assign
+    (6) statement -> . write_statement
+    (7) statement -> . var_declaration_statement
+    (8) statement -> . if_statement
+    (9) statement -> . iteration_statement
+    (27) sent_assign -> . ID EQUAL exp_bool SEMICOLON
+    (28) sent_assign -> . exp_bool SEMICOLON
+    (26) write_statement -> . WRITE ID SEMICOLON
+    (18) var_declaration_statement -> . type_declaration ID COMA var_declaration_statement
+    (19) var_declaration_statement -> . ID COMA var_declaration_statement
+    (20) var_declaration_statement -> . ID SEMICOLON
+    (21) var_declaration_statement -> . type_declaration ID SEMICOLON
+    (16) if_statement -> . IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET FI
+    (17) if_statement -> . IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI
+    (13) iteration_statement -> . for_statement
+    (14) iteration_statement -> . while_statement
+    (15) iteration_statement -> . do_while_statement
+    (29) exp_bool -> . exp_bool OR comb
+    (30) exp_bool -> . comb
+    (22) type_declaration -> . INT
+    (23) type_declaration -> . CHAR
+    (24) type_declaration -> . FLOAT
+    (25) type_declaration -> . BOOL
+    (11) for_statement -> . FOR LPAREN sent_assign sent_assign RPAREN OBRACKET statement_list CBRACKET
+    (12) while_statement -> . WHILE LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET
+    (10) do_while_statement -> . DO OBRACKET statement_list CBRACKET UNTIL LPAREN sent_assign RPAREN
+    (31) comb -> . comb AND igualdad
+    (32) comb -> . igualdad
+    (33) igualdad -> . igualdad EQUALEQUAL rel
+    (34) igualdad -> . igualdad DIFFEQUAL rel
+    (35) igualdad -> . rel
+    (36) rel -> . expr op_rel expr
+    (37) rel -> . expr
+    (42) expr -> . expr MINUS term
+    (43) expr -> . expr PLUS term
+    (44) expr -> . term
+    (45) term -> . term TIMES unario
+    (46) term -> . term DIVIDE unario
+    (47) term -> . unario
+    (48) unario -> . NOT unario
+    (49) unario -> . MINUS unario
+    (50) unario -> . factor
+    (51) factor -> . LPAREN RPAREN
+    (52) factor -> . ID
+    (53) factor -> . NUMBER
+    (54) factor -> . DOUBLE
+    (55) factor -> . TRUE
+    (56) factor -> . FALSE
+
+    ID              shift and go to state 12
+    WRITE           shift and go to state 14
+    IF              shift and go to state 16
+    INT             shift and go to state 22
+    CHAR            shift and go to state 23
+    FLOAT           shift and go to state 24
+    BOOL            shift and go to state 25
+    FOR             shift and go to state 26
+    WHILE           shift and go to state 27
+    DO              shift and go to state 28
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 32
+    LPAREN          shift and go to state 17
+    NUMBER          shift and go to state 37
+    DOUBLE          shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    sent_assign                    shift and go to state 7
+    statement_list                 shift and go to state 102
+    statement                      shift and go to state 6
+    write_statement                shift and go to state 8
+    var_declaration_statement      shift and go to state 9
+    if_statement                   shift and go to state 10
+    iteration_statement            shift and go to state 11
+    exp_bool                       shift and go to state 13
+    type_declaration               shift and go to state 15
+    for_statement                  shift and go to state 18
+    while_statement                shift and go to state 19
+    do_while_statement             shift and go to state 20
+    comb                           shift and go to state 21
+    igualdad                       shift and go to state 29
+    rel                            shift and go to state 30
+    expr                           shift and go to state 31
+    term                           shift and go to state 33
+    unario                         shift and go to state 34
+    factor                         shift and go to state 36
+
+state 99
+
+    (10) do_while_statement -> DO OBRACKET statement_list CBRACKET UNTIL . LPAREN sent_assign RPAREN
+
+    LPAREN          shift and go to state 103
+
+
+state 100
+
+    (16) if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list . CBRACKET FI
+    (17) if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list . CBRACKET ELSE OBRACKET statement_list CBRACKET FI
+    (4) statement_list -> statement_list . statement
+    (5) statement -> . sent_assign
+    (6) statement -> . write_statement
+    (7) statement -> . var_declaration_statement
+    (8) statement -> . if_statement
+    (9) statement -> . iteration_statement
+    (27) sent_assign -> . ID EQUAL exp_bool SEMICOLON
+    (28) sent_assign -> . exp_bool SEMICOLON
+    (26) write_statement -> . WRITE ID SEMICOLON
+    (18) var_declaration_statement -> . type_declaration ID COMA var_declaration_statement
+    (19) var_declaration_statement -> . ID COMA var_declaration_statement
+    (20) var_declaration_statement -> . ID SEMICOLON
+    (21) var_declaration_statement -> . type_declaration ID SEMICOLON
+    (16) if_statement -> . IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET FI
+    (17) if_statement -> . IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI
+    (13) iteration_statement -> . for_statement
+    (14) iteration_statement -> . while_statement
+    (15) iteration_statement -> . do_while_statement
+    (29) exp_bool -> . exp_bool OR comb
+    (30) exp_bool -> . comb
+    (22) type_declaration -> . INT
+    (23) type_declaration -> . CHAR
+    (24) type_declaration -> . FLOAT
+    (25) type_declaration -> . BOOL
+    (11) for_statement -> . FOR LPAREN sent_assign sent_assign RPAREN OBRACKET statement_list CBRACKET
+    (12) while_statement -> . WHILE LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET
+    (10) do_while_statement -> . DO OBRACKET statement_list CBRACKET UNTIL LPAREN sent_assign RPAREN
+    (31) comb -> . comb AND igualdad
+    (32) comb -> . igualdad
+    (33) igualdad -> . igualdad EQUALEQUAL rel
+    (34) igualdad -> . igualdad DIFFEQUAL rel
+    (35) igualdad -> . rel
+    (36) rel -> . expr op_rel expr
+    (37) rel -> . expr
+    (42) expr -> . expr MINUS term
+    (43) expr -> . expr PLUS term
+    (44) expr -> . term
+    (45) term -> . term TIMES unario
+    (46) term -> . term DIVIDE unario
+    (47) term -> . unario
+    (48) unario -> . NOT unario
+    (49) unario -> . MINUS unario
+    (50) unario -> . factor
+    (51) factor -> . LPAREN RPAREN
+    (52) factor -> . ID
+    (53) factor -> . NUMBER
+    (54) factor -> . DOUBLE
+    (55) factor -> . TRUE
+    (56) factor -> . FALSE
+
+    CBRACKET        shift and go to state 104
+    ID              shift and go to state 12
+    WRITE           shift and go to state 14
+    IF              shift and go to state 16
+    INT             shift and go to state 22
+    CHAR            shift and go to state 23
+    FLOAT           shift and go to state 24
+    BOOL            shift and go to state 25
+    FOR             shift and go to state 26
+    WHILE           shift and go to state 27
+    DO              shift and go to state 28
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 32
+    LPAREN          shift and go to state 17
+    NUMBER          shift and go to state 37
+    DOUBLE          shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    sent_assign                    shift and go to state 7
+    statement                      shift and go to state 42
+    write_statement                shift and go to state 8
+    var_declaration_statement      shift and go to state 9
+    if_statement                   shift and go to state 10
+    iteration_statement            shift and go to state 11
+    exp_bool                       shift and go to state 13
+    type_declaration               shift and go to state 15
+    for_statement                  shift and go to state 18
+    while_statement                shift and go to state 19
+    do_while_statement             shift and go to state 20
+    comb                           shift and go to state 21
+    igualdad                       shift and go to state 29
+    rel                            shift and go to state 30
+    expr                           shift and go to state 31
+    term                           shift and go to state 33
+    unario                         shift and go to state 34
+    factor                         shift and go to state 36
+
+state 101
+
+    (11) for_statement -> FOR LPAREN sent_assign sent_assign RPAREN OBRACKET . statement_list CBRACKET
+    (3) statement_list -> . statement
+    (4) statement_list -> . statement_list statement
+    (5) statement -> . sent_assign
+    (6) statement -> . write_statement
+    (7) statement -> . var_declaration_statement
+    (8) statement -> . if_statement
+    (9) statement -> . iteration_statement
+    (27) sent_assign -> . ID EQUAL exp_bool SEMICOLON
+    (28) sent_assign -> . exp_bool SEMICOLON
+    (26) write_statement -> . WRITE ID SEMICOLON
+    (18) var_declaration_statement -> . type_declaration ID COMA var_declaration_statement
+    (19) var_declaration_statement -> . ID COMA var_declaration_statement
+    (20) var_declaration_statement -> . ID SEMICOLON
+    (21) var_declaration_statement -> . type_declaration ID SEMICOLON
+    (16) if_statement -> . IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET FI
+    (17) if_statement -> . IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI
+    (13) iteration_statement -> . for_statement
+    (14) iteration_statement -> . while_statement
+    (15) iteration_statement -> . do_while_statement
+    (29) exp_bool -> . exp_bool OR comb
+    (30) exp_bool -> . comb
+    (22) type_declaration -> . INT
+    (23) type_declaration -> . CHAR
+    (24) type_declaration -> . FLOAT
+    (25) type_declaration -> . BOOL
+    (11) for_statement -> . FOR LPAREN sent_assign sent_assign RPAREN OBRACKET statement_list CBRACKET
+    (12) while_statement -> . WHILE LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET
+    (10) do_while_statement -> . DO OBRACKET statement_list CBRACKET UNTIL LPAREN sent_assign RPAREN
+    (31) comb -> . comb AND igualdad
+    (32) comb -> . igualdad
+    (33) igualdad -> . igualdad EQUALEQUAL rel
+    (34) igualdad -> . igualdad DIFFEQUAL rel
+    (35) igualdad -> . rel
+    (36) rel -> . expr op_rel expr
+    (37) rel -> . expr
+    (42) expr -> . expr MINUS term
+    (43) expr -> . expr PLUS term
+    (44) expr -> . term
+    (45) term -> . term TIMES unario
+    (46) term -> . term DIVIDE unario
+    (47) term -> . unario
+    (48) unario -> . NOT unario
+    (49) unario -> . MINUS unario
+    (50) unario -> . factor
+    (51) factor -> . LPAREN RPAREN
+    (52) factor -> . ID
+    (53) factor -> . NUMBER
+    (54) factor -> . DOUBLE
+    (55) factor -> . TRUE
+    (56) factor -> . FALSE
+
+    ID              shift and go to state 12
+    WRITE           shift and go to state 14
+    IF              shift and go to state 16
+    INT             shift and go to state 22
+    CHAR            shift and go to state 23
+    FLOAT           shift and go to state 24
+    BOOL            shift and go to state 25
+    FOR             shift and go to state 26
+    WHILE           shift and go to state 27
+    DO              shift and go to state 28
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 32
+    LPAREN          shift and go to state 17
+    NUMBER          shift and go to state 37
+    DOUBLE          shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    sent_assign                    shift and go to state 7
+    statement_list                 shift and go to state 105
+    statement                      shift and go to state 6
+    write_statement                shift and go to state 8
+    var_declaration_statement      shift and go to state 9
+    if_statement                   shift and go to state 10
+    iteration_statement            shift and go to state 11
+    exp_bool                       shift and go to state 13
+    type_declaration               shift and go to state 15
+    for_statement                  shift and go to state 18
+    while_statement                shift and go to state 19
+    do_while_statement             shift and go to state 20
+    comb                           shift and go to state 21
+    igualdad                       shift and go to state 29
+    rel                            shift and go to state 30
+    expr                           shift and go to state 31
+    term                           shift and go to state 33
+    unario                         shift and go to state 34
+    factor                         shift and go to state 36
+
+state 102
+
+    (12) while_statement -> WHILE LPAREN sent_assign RPAREN OBRACKET statement_list . CBRACKET
+    (4) statement_list -> statement_list . statement
+    (5) statement -> . sent_assign
+    (6) statement -> . write_statement
+    (7) statement -> . var_declaration_statement
+    (8) statement -> . if_statement
+    (9) statement -> . iteration_statement
+    (27) sent_assign -> . ID EQUAL exp_bool SEMICOLON
+    (28) sent_assign -> . exp_bool SEMICOLON
+    (26) write_statement -> . WRITE ID SEMICOLON
+    (18) var_declaration_statement -> . type_declaration ID COMA var_declaration_statement
+    (19) var_declaration_statement -> . ID COMA var_declaration_statement
+    (20) var_declaration_statement -> . ID SEMICOLON
+    (21) var_declaration_statement -> . type_declaration ID SEMICOLON
+    (16) if_statement -> . IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET FI
+    (17) if_statement -> . IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI
+    (13) iteration_statement -> . for_statement
+    (14) iteration_statement -> . while_statement
+    (15) iteration_statement -> . do_while_statement
+    (29) exp_bool -> . exp_bool OR comb
+    (30) exp_bool -> . comb
+    (22) type_declaration -> . INT
+    (23) type_declaration -> . CHAR
+    (24) type_declaration -> . FLOAT
+    (25) type_declaration -> . BOOL
+    (11) for_statement -> . FOR LPAREN sent_assign sent_assign RPAREN OBRACKET statement_list CBRACKET
+    (12) while_statement -> . WHILE LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET
+    (10) do_while_statement -> . DO OBRACKET statement_list CBRACKET UNTIL LPAREN sent_assign RPAREN
+    (31) comb -> . comb AND igualdad
+    (32) comb -> . igualdad
+    (33) igualdad -> . igualdad EQUALEQUAL rel
+    (34) igualdad -> . igualdad DIFFEQUAL rel
+    (35) igualdad -> . rel
+    (36) rel -> . expr op_rel expr
+    (37) rel -> . expr
+    (42) expr -> . expr MINUS term
+    (43) expr -> . expr PLUS term
+    (44) expr -> . term
+    (45) term -> . term TIMES unario
+    (46) term -> . term DIVIDE unario
+    (47) term -> . unario
+    (48) unario -> . NOT unario
+    (49) unario -> . MINUS unario
+    (50) unario -> . factor
+    (51) factor -> . LPAREN RPAREN
+    (52) factor -> . ID
+    (53) factor -> . NUMBER
+    (54) factor -> . DOUBLE
+    (55) factor -> . TRUE
+    (56) factor -> . FALSE
+
+    CBRACKET        shift and go to state 106
+    ID              shift and go to state 12
+    WRITE           shift and go to state 14
+    IF              shift and go to state 16
+    INT             shift and go to state 22
+    CHAR            shift and go to state 23
+    FLOAT           shift and go to state 24
+    BOOL            shift and go to state 25
+    FOR             shift and go to state 26
+    WHILE           shift and go to state 27
+    DO              shift and go to state 28
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 32
+    LPAREN          shift and go to state 17
+    NUMBER          shift and go to state 37
+    DOUBLE          shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    sent_assign                    shift and go to state 7
+    statement                      shift and go to state 42
+    write_statement                shift and go to state 8
+    var_declaration_statement      shift and go to state 9
+    if_statement                   shift and go to state 10
+    iteration_statement            shift and go to state 11
+    exp_bool                       shift and go to state 13
+    type_declaration               shift and go to state 15
+    for_statement                  shift and go to state 18
+    while_statement                shift and go to state 19
+    do_while_statement             shift and go to state 20
+    comb                           shift and go to state 21
+    igualdad                       shift and go to state 29
+    rel                            shift and go to state 30
+    expr                           shift and go to state 31
+    term                           shift and go to state 33
+    unario                         shift and go to state 34
+    factor                         shift and go to state 36
+
+state 103
+
+    (10) do_while_statement -> DO OBRACKET statement_list CBRACKET UNTIL LPAREN . sent_assign RPAREN
+    (27) sent_assign -> . ID EQUAL exp_bool SEMICOLON
+    (28) sent_assign -> . exp_bool SEMICOLON
+    (29) exp_bool -> . exp_bool OR comb
+    (30) exp_bool -> . comb
+    (31) comb -> . comb AND igualdad
+    (32) comb -> . igualdad
+    (33) igualdad -> . igualdad EQUALEQUAL rel
+    (34) igualdad -> . igualdad DIFFEQUAL rel
+    (35) igualdad -> . rel
+    (36) rel -> . expr op_rel expr
+    (37) rel -> . expr
+    (42) expr -> . expr MINUS term
+    (43) expr -> . expr PLUS term
+    (44) expr -> . term
+    (45) term -> . term TIMES unario
+    (46) term -> . term DIVIDE unario
+    (47) term -> . unario
+    (48) unario -> . NOT unario
+    (49) unario -> . MINUS unario
+    (50) unario -> . factor
+    (51) factor -> . LPAREN RPAREN
+    (52) factor -> . ID
+    (53) factor -> . NUMBER
+    (54) factor -> . DOUBLE
+    (55) factor -> . TRUE
+    (56) factor -> . FALSE
+
+    ID              shift and go to state 78
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 32
+    LPAREN          shift and go to state 17
+    NUMBER          shift and go to state 37
+    DOUBLE          shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    sent_assign                    shift and go to state 107
+    exp_bool                       shift and go to state 13
+    comb                           shift and go to state 21
+    igualdad                       shift and go to state 29
+    rel                            shift and go to state 30
+    expr                           shift and go to state 31
+    term                           shift and go to state 33
+    unario                         shift and go to state 34
+    factor                         shift and go to state 36
+
+state 104
+
+    (16) if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET . FI
+    (17) if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET . ELSE OBRACKET statement_list CBRACKET FI
+
+    FI              shift and go to state 108
+    ELSE            shift and go to state 109
+
+
+state 105
+
+    (11) for_statement -> FOR LPAREN sent_assign sent_assign RPAREN OBRACKET statement_list . CBRACKET
+    (4) statement_list -> statement_list . statement
+    (5) statement -> . sent_assign
+    (6) statement -> . write_statement
+    (7) statement -> . var_declaration_statement
+    (8) statement -> . if_statement
+    (9) statement -> . iteration_statement
+    (27) sent_assign -> . ID EQUAL exp_bool SEMICOLON
+    (28) sent_assign -> . exp_bool SEMICOLON
+    (26) write_statement -> . WRITE ID SEMICOLON
+    (18) var_declaration_statement -> . type_declaration ID COMA var_declaration_statement
+    (19) var_declaration_statement -> . ID COMA var_declaration_statement
+    (20) var_declaration_statement -> . ID SEMICOLON
+    (21) var_declaration_statement -> . type_declaration ID SEMICOLON
+    (16) if_statement -> . IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET FI
+    (17) if_statement -> . IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI
+    (13) iteration_statement -> . for_statement
+    (14) iteration_statement -> . while_statement
+    (15) iteration_statement -> . do_while_statement
+    (29) exp_bool -> . exp_bool OR comb
+    (30) exp_bool -> . comb
+    (22) type_declaration -> . INT
+    (23) type_declaration -> . CHAR
+    (24) type_declaration -> . FLOAT
+    (25) type_declaration -> . BOOL
+    (11) for_statement -> . FOR LPAREN sent_assign sent_assign RPAREN OBRACKET statement_list CBRACKET
+    (12) while_statement -> . WHILE LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET
+    (10) do_while_statement -> . DO OBRACKET statement_list CBRACKET UNTIL LPAREN sent_assign RPAREN
+    (31) comb -> . comb AND igualdad
+    (32) comb -> . igualdad
+    (33) igualdad -> . igualdad EQUALEQUAL rel
+    (34) igualdad -> . igualdad DIFFEQUAL rel
+    (35) igualdad -> . rel
+    (36) rel -> . expr op_rel expr
+    (37) rel -> . expr
+    (42) expr -> . expr MINUS term
+    (43) expr -> . expr PLUS term
+    (44) expr -> . term
+    (45) term -> . term TIMES unario
+    (46) term -> . term DIVIDE unario
+    (47) term -> . unario
+    (48) unario -> . NOT unario
+    (49) unario -> . MINUS unario
+    (50) unario -> . factor
+    (51) factor -> . LPAREN RPAREN
+    (52) factor -> . ID
+    (53) factor -> . NUMBER
+    (54) factor -> . DOUBLE
+    (55) factor -> . TRUE
+    (56) factor -> . FALSE
+
+    CBRACKET        shift and go to state 110
+    ID              shift and go to state 12
+    WRITE           shift and go to state 14
+    IF              shift and go to state 16
+    INT             shift and go to state 22
+    CHAR            shift and go to state 23
+    FLOAT           shift and go to state 24
+    BOOL            shift and go to state 25
+    FOR             shift and go to state 26
+    WHILE           shift and go to state 27
+    DO              shift and go to state 28
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 32
+    LPAREN          shift and go to state 17
+    NUMBER          shift and go to state 37
+    DOUBLE          shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    sent_assign                    shift and go to state 7
+    statement                      shift and go to state 42
+    write_statement                shift and go to state 8
+    var_declaration_statement      shift and go to state 9
+    if_statement                   shift and go to state 10
+    iteration_statement            shift and go to state 11
+    exp_bool                       shift and go to state 13
+    type_declaration               shift and go to state 15
+    for_statement                  shift and go to state 18
+    while_statement                shift and go to state 19
+    do_while_statement             shift and go to state 20
+    comb                           shift and go to state 21
+    igualdad                       shift and go to state 29
+    rel                            shift and go to state 30
+    expr                           shift and go to state 31
+    term                           shift and go to state 33
+    unario                         shift and go to state 34
+    factor                         shift and go to state 36
+
+state 106
+
+    (12) while_statement -> WHILE LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET .
+
+    CBRACKET        reduce using rule 12 (while_statement -> WHILE LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+    ID              reduce using rule 12 (while_statement -> WHILE LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+    WRITE           reduce using rule 12 (while_statement -> WHILE LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+    IF              reduce using rule 12 (while_statement -> WHILE LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+    INT             reduce using rule 12 (while_statement -> WHILE LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+    CHAR            reduce using rule 12 (while_statement -> WHILE LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+    FLOAT           reduce using rule 12 (while_statement -> WHILE LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+    BOOL            reduce using rule 12 (while_statement -> WHILE LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+    FOR             reduce using rule 12 (while_statement -> WHILE LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+    WHILE           reduce using rule 12 (while_statement -> WHILE LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+    DO              reduce using rule 12 (while_statement -> WHILE LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+    NOT             reduce using rule 12 (while_statement -> WHILE LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+    MINUS           reduce using rule 12 (while_statement -> WHILE LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+    LPAREN          reduce using rule 12 (while_statement -> WHILE LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+    NUMBER          reduce using rule 12 (while_statement -> WHILE LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+    DOUBLE          reduce using rule 12 (while_statement -> WHILE LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+    TRUE            reduce using rule 12 (while_statement -> WHILE LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+    FALSE           reduce using rule 12 (while_statement -> WHILE LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+
+
+state 107
+
+    (10) do_while_statement -> DO OBRACKET statement_list CBRACKET UNTIL LPAREN sent_assign . RPAREN
+
+    RPAREN          shift and go to state 111
+
+
+state 108
+
+    (16) if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET FI .
+
+    CBRACKET        reduce using rule 16 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET FI .)
+    ID              reduce using rule 16 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET FI .)
+    WRITE           reduce using rule 16 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET FI .)
+    IF              reduce using rule 16 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET FI .)
+    INT             reduce using rule 16 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET FI .)
+    CHAR            reduce using rule 16 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET FI .)
+    FLOAT           reduce using rule 16 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET FI .)
+    BOOL            reduce using rule 16 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET FI .)
+    FOR             reduce using rule 16 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET FI .)
+    WHILE           reduce using rule 16 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET FI .)
+    DO              reduce using rule 16 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET FI .)
+    NOT             reduce using rule 16 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET FI .)
+    MINUS           reduce using rule 16 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET FI .)
+    LPAREN          reduce using rule 16 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET FI .)
+    NUMBER          reduce using rule 16 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET FI .)
+    DOUBLE          reduce using rule 16 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET FI .)
+    TRUE            reduce using rule 16 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET FI .)
+    FALSE           reduce using rule 16 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET FI .)
+
+
+state 109
+
+    (17) if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE . OBRACKET statement_list CBRACKET FI
+
+    OBRACKET        shift and go to state 112
+
+
+state 110
+
+    (11) for_statement -> FOR LPAREN sent_assign sent_assign RPAREN OBRACKET statement_list CBRACKET .
+
+    CBRACKET        reduce using rule 11 (for_statement -> FOR LPAREN sent_assign sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+    ID              reduce using rule 11 (for_statement -> FOR LPAREN sent_assign sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+    WRITE           reduce using rule 11 (for_statement -> FOR LPAREN sent_assign sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+    IF              reduce using rule 11 (for_statement -> FOR LPAREN sent_assign sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+    INT             reduce using rule 11 (for_statement -> FOR LPAREN sent_assign sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+    CHAR            reduce using rule 11 (for_statement -> FOR LPAREN sent_assign sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+    FLOAT           reduce using rule 11 (for_statement -> FOR LPAREN sent_assign sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+    BOOL            reduce using rule 11 (for_statement -> FOR LPAREN sent_assign sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+    FOR             reduce using rule 11 (for_statement -> FOR LPAREN sent_assign sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+    WHILE           reduce using rule 11 (for_statement -> FOR LPAREN sent_assign sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+    DO              reduce using rule 11 (for_statement -> FOR LPAREN sent_assign sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+    NOT             reduce using rule 11 (for_statement -> FOR LPAREN sent_assign sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+    MINUS           reduce using rule 11 (for_statement -> FOR LPAREN sent_assign sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+    LPAREN          reduce using rule 11 (for_statement -> FOR LPAREN sent_assign sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+    NUMBER          reduce using rule 11 (for_statement -> FOR LPAREN sent_assign sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+    DOUBLE          reduce using rule 11 (for_statement -> FOR LPAREN sent_assign sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+    TRUE            reduce using rule 11 (for_statement -> FOR LPAREN sent_assign sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+    FALSE           reduce using rule 11 (for_statement -> FOR LPAREN sent_assign sent_assign RPAREN OBRACKET statement_list CBRACKET .)
+
+
+state 111
+
+    (10) do_while_statement -> DO OBRACKET statement_list CBRACKET UNTIL LPAREN sent_assign RPAREN .
+
+    CBRACKET        reduce using rule 10 (do_while_statement -> DO OBRACKET statement_list CBRACKET UNTIL LPAREN sent_assign RPAREN .)
+    ID              reduce using rule 10 (do_while_statement -> DO OBRACKET statement_list CBRACKET UNTIL LPAREN sent_assign RPAREN .)
+    WRITE           reduce using rule 10 (do_while_statement -> DO OBRACKET statement_list CBRACKET UNTIL LPAREN sent_assign RPAREN .)
+    IF              reduce using rule 10 (do_while_statement -> DO OBRACKET statement_list CBRACKET UNTIL LPAREN sent_assign RPAREN .)
+    INT             reduce using rule 10 (do_while_statement -> DO OBRACKET statement_list CBRACKET UNTIL LPAREN sent_assign RPAREN .)
+    CHAR            reduce using rule 10 (do_while_statement -> DO OBRACKET statement_list CBRACKET UNTIL LPAREN sent_assign RPAREN .)
+    FLOAT           reduce using rule 10 (do_while_statement -> DO OBRACKET statement_list CBRACKET UNTIL LPAREN sent_assign RPAREN .)
+    BOOL            reduce using rule 10 (do_while_statement -> DO OBRACKET statement_list CBRACKET UNTIL LPAREN sent_assign RPAREN .)
+    FOR             reduce using rule 10 (do_while_statement -> DO OBRACKET statement_list CBRACKET UNTIL LPAREN sent_assign RPAREN .)
+    WHILE           reduce using rule 10 (do_while_statement -> DO OBRACKET statement_list CBRACKET UNTIL LPAREN sent_assign RPAREN .)
+    DO              reduce using rule 10 (do_while_statement -> DO OBRACKET statement_list CBRACKET UNTIL LPAREN sent_assign RPAREN .)
+    NOT             reduce using rule 10 (do_while_statement -> DO OBRACKET statement_list CBRACKET UNTIL LPAREN sent_assign RPAREN .)
+    MINUS           reduce using rule 10 (do_while_statement -> DO OBRACKET statement_list CBRACKET UNTIL LPAREN sent_assign RPAREN .)
+    LPAREN          reduce using rule 10 (do_while_statement -> DO OBRACKET statement_list CBRACKET UNTIL LPAREN sent_assign RPAREN .)
+    NUMBER          reduce using rule 10 (do_while_statement -> DO OBRACKET statement_list CBRACKET UNTIL LPAREN sent_assign RPAREN .)
+    DOUBLE          reduce using rule 10 (do_while_statement -> DO OBRACKET statement_list CBRACKET UNTIL LPAREN sent_assign RPAREN .)
+    TRUE            reduce using rule 10 (do_while_statement -> DO OBRACKET statement_list CBRACKET UNTIL LPAREN sent_assign RPAREN .)
+    FALSE           reduce using rule 10 (do_while_statement -> DO OBRACKET statement_list CBRACKET UNTIL LPAREN sent_assign RPAREN .)
+
+
+state 112
+
+    (17) if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET . statement_list CBRACKET FI
+    (3) statement_list -> . statement
+    (4) statement_list -> . statement_list statement
+    (5) statement -> . sent_assign
+    (6) statement -> . write_statement
+    (7) statement -> . var_declaration_statement
+    (8) statement -> . if_statement
+    (9) statement -> . iteration_statement
+    (27) sent_assign -> . ID EQUAL exp_bool SEMICOLON
+    (28) sent_assign -> . exp_bool SEMICOLON
+    (26) write_statement -> . WRITE ID SEMICOLON
+    (18) var_declaration_statement -> . type_declaration ID COMA var_declaration_statement
+    (19) var_declaration_statement -> . ID COMA var_declaration_statement
+    (20) var_declaration_statement -> . ID SEMICOLON
+    (21) var_declaration_statement -> . type_declaration ID SEMICOLON
+    (16) if_statement -> . IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET FI
+    (17) if_statement -> . IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI
+    (13) iteration_statement -> . for_statement
+    (14) iteration_statement -> . while_statement
+    (15) iteration_statement -> . do_while_statement
+    (29) exp_bool -> . exp_bool OR comb
+    (30) exp_bool -> . comb
+    (22) type_declaration -> . INT
+    (23) type_declaration -> . CHAR
+    (24) type_declaration -> . FLOAT
+    (25) type_declaration -> . BOOL
+    (11) for_statement -> . FOR LPAREN sent_assign sent_assign RPAREN OBRACKET statement_list CBRACKET
+    (12) while_statement -> . WHILE LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET
+    (10) do_while_statement -> . DO OBRACKET statement_list CBRACKET UNTIL LPAREN sent_assign RPAREN
+    (31) comb -> . comb AND igualdad
+    (32) comb -> . igualdad
+    (33) igualdad -> . igualdad EQUALEQUAL rel
+    (34) igualdad -> . igualdad DIFFEQUAL rel
+    (35) igualdad -> . rel
+    (36) rel -> . expr op_rel expr
+    (37) rel -> . expr
+    (42) expr -> . expr MINUS term
+    (43) expr -> . expr PLUS term
+    (44) expr -> . term
+    (45) term -> . term TIMES unario
+    (46) term -> . term DIVIDE unario
+    (47) term -> . unario
+    (48) unario -> . NOT unario
+    (49) unario -> . MINUS unario
+    (50) unario -> . factor
+    (51) factor -> . LPAREN RPAREN
+    (52) factor -> . ID
+    (53) factor -> . NUMBER
+    (54) factor -> . DOUBLE
+    (55) factor -> . TRUE
+    (56) factor -> . FALSE
+
+    ID              shift and go to state 12
+    WRITE           shift and go to state 14
+    IF              shift and go to state 16
+    INT             shift and go to state 22
+    CHAR            shift and go to state 23
+    FLOAT           shift and go to state 24
+    BOOL            shift and go to state 25
+    FOR             shift and go to state 26
+    WHILE           shift and go to state 27
+    DO              shift and go to state 28
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 32
+    LPAREN          shift and go to state 17
+    NUMBER          shift and go to state 37
+    DOUBLE          shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    sent_assign                    shift and go to state 7
+    statement_list                 shift and go to state 113
+    statement                      shift and go to state 6
+    write_statement                shift and go to state 8
+    var_declaration_statement      shift and go to state 9
+    if_statement                   shift and go to state 10
+    iteration_statement            shift and go to state 11
+    exp_bool                       shift and go to state 13
+    type_declaration               shift and go to state 15
+    for_statement                  shift and go to state 18
+    while_statement                shift and go to state 19
+    do_while_statement             shift and go to state 20
+    comb                           shift and go to state 21
+    igualdad                       shift and go to state 29
+    rel                            shift and go to state 30
+    expr                           shift and go to state 31
+    term                           shift and go to state 33
+    unario                         shift and go to state 34
+    factor                         shift and go to state 36
+
+state 113
+
+    (17) if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list . CBRACKET FI
+    (4) statement_list -> statement_list . statement
+    (5) statement -> . sent_assign
+    (6) statement -> . write_statement
+    (7) statement -> . var_declaration_statement
+    (8) statement -> . if_statement
+    (9) statement -> . iteration_statement
+    (27) sent_assign -> . ID EQUAL exp_bool SEMICOLON
+    (28) sent_assign -> . exp_bool SEMICOLON
+    (26) write_statement -> . WRITE ID SEMICOLON
+    (18) var_declaration_statement -> . type_declaration ID COMA var_declaration_statement
+    (19) var_declaration_statement -> . ID COMA var_declaration_statement
+    (20) var_declaration_statement -> . ID SEMICOLON
+    (21) var_declaration_statement -> . type_declaration ID SEMICOLON
+    (16) if_statement -> . IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET FI
+    (17) if_statement -> . IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI
+    (13) iteration_statement -> . for_statement
+    (14) iteration_statement -> . while_statement
+    (15) iteration_statement -> . do_while_statement
+    (29) exp_bool -> . exp_bool OR comb
+    (30) exp_bool -> . comb
+    (22) type_declaration -> . INT
+    (23) type_declaration -> . CHAR
+    (24) type_declaration -> . FLOAT
+    (25) type_declaration -> . BOOL
+    (11) for_statement -> . FOR LPAREN sent_assign sent_assign RPAREN OBRACKET statement_list CBRACKET
+    (12) while_statement -> . WHILE LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET
+    (10) do_while_statement -> . DO OBRACKET statement_list CBRACKET UNTIL LPAREN sent_assign RPAREN
+    (31) comb -> . comb AND igualdad
+    (32) comb -> . igualdad
+    (33) igualdad -> . igualdad EQUALEQUAL rel
+    (34) igualdad -> . igualdad DIFFEQUAL rel
+    (35) igualdad -> . rel
+    (36) rel -> . expr op_rel expr
+    (37) rel -> . expr
+    (42) expr -> . expr MINUS term
+    (43) expr -> . expr PLUS term
+    (44) expr -> . term
+    (45) term -> . term TIMES unario
+    (46) term -> . term DIVIDE unario
+    (47) term -> . unario
+    (48) unario -> . NOT unario
+    (49) unario -> . MINUS unario
+    (50) unario -> . factor
+    (51) factor -> . LPAREN RPAREN
+    (52) factor -> . ID
+    (53) factor -> . NUMBER
+    (54) factor -> . DOUBLE
+    (55) factor -> . TRUE
+    (56) factor -> . FALSE
+
+    CBRACKET        shift and go to state 114
+    ID              shift and go to state 12
+    WRITE           shift and go to state 14
+    IF              shift and go to state 16
+    INT             shift and go to state 22
+    CHAR            shift and go to state 23
+    FLOAT           shift and go to state 24
+    BOOL            shift and go to state 25
+    FOR             shift and go to state 26
+    WHILE           shift and go to state 27
+    DO              shift and go to state 28
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 32
+    LPAREN          shift and go to state 17
+    NUMBER          shift and go to state 37
+    DOUBLE          shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    sent_assign                    shift and go to state 7
+    statement                      shift and go to state 42
+    write_statement                shift and go to state 8
+    var_declaration_statement      shift and go to state 9
+    if_statement                   shift and go to state 10
+    iteration_statement            shift and go to state 11
+    exp_bool                       shift and go to state 13
+    type_declaration               shift and go to state 15
+    for_statement                  shift and go to state 18
+    while_statement                shift and go to state 19
+    do_while_statement             shift and go to state 20
+    comb                           shift and go to state 21
+    igualdad                       shift and go to state 29
+    rel                            shift and go to state 30
+    expr                           shift and go to state 31
+    term                           shift and go to state 33
+    unario                         shift and go to state 34
+    factor                         shift and go to state 36
+
+state 114
+
+    (17) if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET . FI
+
+    FI              shift and go to state 115
+
+
+state 115
+
+    (17) if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI .
+
+    CBRACKET        reduce using rule 17 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI .)
+    ID              reduce using rule 17 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI .)
+    WRITE           reduce using rule 17 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI .)
+    IF              reduce using rule 17 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI .)
+    INT             reduce using rule 17 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI .)
+    CHAR            reduce using rule 17 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI .)
+    FLOAT           reduce using rule 17 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI .)
+    BOOL            reduce using rule 17 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI .)
+    FOR             reduce using rule 17 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI .)
+    WHILE           reduce using rule 17 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI .)
+    DO              reduce using rule 17 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI .)
+    NOT             reduce using rule 17 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI .)
+    MINUS           reduce using rule 17 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI .)
+    LPAREN          reduce using rule 17 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI .)
+    NUMBER          reduce using rule 17 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI .)
+    DOUBLE          reduce using rule 17 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI .)
+    TRUE            reduce using rule 17 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI .)
+    FALSE           reduce using rule 17 (if_statement -> IF LPAREN sent_assign RPAREN OBRACKET statement_list CBRACKET ELSE OBRACKET statement_list CBRACKET FI .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for SEMICOLON in state 12 resolved as shift
